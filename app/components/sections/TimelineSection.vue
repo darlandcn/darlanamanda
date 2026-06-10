@@ -9,11 +9,14 @@
     <div class="relative z-10 w-full max-w-3xl mx-auto px-6">
       <!-- Cabeçalho -->
       <div ref="headerRef" class="text-center mb-20">
-        <p class="text-xs uppercase tracking-[0.3em] text-slate-300 mb-3">Nossa linha do tempo</p>
+        <p class="text-xs uppercase tracking-[0.3em] text-slate-300 mb-3">Capítulo II</p>
         <h2 class="font-serif text-4xl md:text-5xl text-ivory">
-          Momentos que<br />
-          <span class="italic text-gradient-gold">nos definem</span>
+          Nossa linha<br />
+          <span class="italic text-gradient-gold">do tempo</span>
         </h2>
+        <p class="mt-5 text-sm text-ivory-200 leading-relaxed">
+          E depois daqueles dias na estância tivemos vários momentos
+        </p>
       </div>
 
       <!-- Linha vertical central -->

@@ -10,6 +10,9 @@ export default {
       fontFamily: {
         serif: ['Playfair Display', 'Georgia', 'serif'],
         sans: ['Inter', 'sans-serif'],
+        script: ['Dancing Script', 'cursive'],
+        oleo: ['Oleo Script', 'cursive'],
+        caveat: ['Caveat', 'cursive'],
       },
       colors: {
         abyss: {
