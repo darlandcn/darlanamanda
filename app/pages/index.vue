@@ -59,7 +59,7 @@
         align-items: center;
         justify-content: center;
         padding: 40px 0;
-        padding-top: 15vh;
+        padding-top: 25vh;
       "
     >
       <div
