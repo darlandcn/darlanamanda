@@ -22,7 +22,7 @@
     <!-- Sparkle — topo independente -->
     <div
       class="sparkle"
-      style="position: fixed; top: 10vh; left: 50%; transform: translateX(-50%); z-index: 10; display: flex; justify-content: center;"
+      style="position: fixed; top: 6vh; left: 50%; transform: translateX(-50%); z-index: 10; display: flex; justify-content: center;"
     >
       <SparkleIcon />
     </div>
@@ -30,7 +30,7 @@
     <!-- Cadeado — base independente -->
     <div
       class="lock-icon"
-      style="position: fixed; bottom: 8vh; left: 50%; transform: translateX(-50%); z-index: 10; display: flex; justify-content: center;"
+      style="position: fixed; bottom: 4vh; left: 50%; transform: translateX(-50%); z-index: 10; display: flex; justify-content: center;"
       aria-hidden="true"
     >
       <svg
