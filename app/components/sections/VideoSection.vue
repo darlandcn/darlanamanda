@@ -2,17 +2,17 @@
   <section
     id="section-video"
     data-section="video"
-    class="section-base min-h-screen bg-night-100 relative py-24"
+    class="section-base min-h-screen bg-abyss-100 relative py-24"
   >
-    <div aria-hidden="true" class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-rose-800 to-transparent opacity-40" />
+    <div aria-hidden="true" class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-slate-600 to-transparent opacity-20" />
 
     <div class="relative z-10 w-full max-w-4xl mx-auto px-6">
       <!-- Cabeçalho -->
       <div ref="headerRef" class="text-center mb-12">
-        <p class="text-xs uppercase tracking-[0.3em] text-rose-400 mb-3">Capítulo VI</p>
-        <h2 class="font-serif text-4xl md:text-5xl text-blush-text">
+        <p class="text-xs uppercase tracking-[0.3em] text-slate-300 mb-3">Capítulo VI</p>
+        <h2 class="font-serif text-4xl md:text-5xl text-ivory">
           Reviver em<br />
-          <span class="italic text-gradient-rose">movimento</span>
+          <span class="italic text-gradient-gold">movimento</span>
         </h2>
       </div>
 
@@ -32,12 +32,12 @@
         <!-- Thumbnail placeholder -->
         <div
           class="absolute inset-0 flex items-center justify-center
-                 bg-gradient-to-br from-night-300 via-night-200 to-night-300"
+                 bg-gradient-to-br from-abyss-300 via-abyss-200 to-abyss-300"
         >
           <!-- Gradiente dinâmico no hover -->
           <div
             class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-            style="background: radial-gradient(ellipse at center, rgba(219,39,119,0.1), transparent)"
+            style="background: radial-gradient(ellipse at center, rgba(148,163,184,0.06), transparent)"
           />
 
           <!-- Botão play -->
@@ -46,21 +46,21 @@
                    transition-transform duration-300 group-hover:scale-110"
           >
             <div
-              class="w-20 h-20 rounded-full border-2 border-rose-600/60 flex items-center justify-center
-                     bg-night-200/80 backdrop-blur-sm shadow-[0_0_40px_rgba(219,39,119,0.2)]
-                     group-hover:border-rose-500 group-hover:shadow-[0_0_60px_rgba(219,39,119,0.35)]
+              class="w-20 h-20 rounded-full border-2 border-slate-400/40 flex items-center justify-center
+                     bg-abyss-200/80 backdrop-blur-sm shadow-[0_0_40px_rgba(148,163,184,0.08)]
+                     group-hover:border-slate-300 group-hover:shadow-[0_0_60px_rgba(148,163,184,0.12)]
                      transition-all duration-300"
             >
               <svg
                 width="28" height="28"
                 viewBox="0 0 24 24"
                 fill="currentColor"
-                class="text-rose-400 ml-1"
+                class="text-slate-300 ml-1"
               >
                 <path d="M8 5v14l11-7z"/>
               </svg>
             </div>
-            <p class="text-xs text-blush-muted tracking-[0.2em] uppercase">Assistir</p>
+            <p class="text-xs text-ivory-200 tracking-[0.2em] uppercase">Assistir</p>
           </div>
 
           <!-- Ícone de vídeo de fundo (decorativo) -->
@@ -73,11 +73,11 @@
         </div>
 
         <!-- Ring decorativo -->
-        <div class="absolute inset-0 rounded-2xl ring-1 ring-rose-900/20 pointer-events-none" />
+        <div class="absolute inset-0 rounded-2xl ring-1 ring-slate-600/10 pointer-events-none" />
       </div>
 
       <!-- Legenda -->
-      <p ref="captionRef" class="mt-6 text-center text-sm text-blush-muted">
+      <p ref="captionRef" class="mt-6 text-center text-sm text-ivory-200">
         Um vídeo especial feito com todo o amor do mundo — para você.
       </p>
     </div>

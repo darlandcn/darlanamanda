@@ -52,7 +52,7 @@
         width="48" height="48"
         viewBox="0 0 24 24"
         fill="none"
-        stroke="#C9A96E"
+        stroke="#94A3B8"
         stroke-width="1.2"
         stroke-linecap="round"
         stroke-linejoin="round"
@@ -67,7 +67,7 @@
         width="48" height="48"
         viewBox="0 0 24 24"
         fill="none"
-        stroke="#C9A96E"
+        stroke="#94A3B8"
         stroke-width="1.2"
         stroke-linecap="round"
         stroke-linejoin="round"
@@ -107,44 +107,37 @@
       </p>
     </div>
 
-    <!-- Convite para rolar (Cena 7) -->
+    <!-- Convite para deslizar (Cena 7) -->
     <div
       ref="scrollEl"
       style="
         position: fixed;
-        bottom: 10vh;
+        top: 50%;
         left: 50%;
-        transform: translateX(-50%);
+        transform: translate(-50%, -50%);
         z-index: 10;
         opacity: 0;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
-        gap: 12px;
+        gap: 10px;
+        cursor: pointer;
+        white-space: nowrap;
       "
+      @click="navigate"
     >
       <span
         style="
           font-family: 'Inter', sans-serif;
-          font-size: 0.8rem;
+          font-size: 0.75rem;
           font-weight: 300;
-          letter-spacing: 0.12em;
-          color: #7A7168;
+          letter-spacing: 0.14em;
+          color: #CBD5E1;
           text-transform: uppercase;
         "
       >
-        Role para começar
+        Clique para começar
       </span>
-      <div
-        ref="arrowEl"
-        style="
-          color: #C9A96E;
-          font-size: 1.2rem;
-          opacity: 0.7;
-        "
-      >
-        ↓
-      </div>
     </div>
   </div>
 </template>
@@ -183,7 +176,9 @@ async function showPhrase(text: string, inDuration: number, hold: number, outDur
   await gsap.to(phraseEl.value, { opacity: 0, duration: outDuration, ease: 'power2.in' })
 }
 
-let scrollHandler: (() => void) | null = null
+let touchStartX = 0
+let touchStartHandler: ((e: TouchEvent) => void) | null = null
+let touchEndHandler: ((e: TouchEvent) => void) | null = null
 
 onMounted(async () => {
   if (!sessionStorage.getItem('granted')) {
@@ -233,30 +228,35 @@ onMounted(async () => {
   await gsap.to(scrollEl.value, { opacity: 1, duration: 1, ease: 'power2.out' })
 
   gsap.to(arrowEl.value, {
-    y: 6,
-    duration: 1,
+    x: 5,
+    duration: 0.9,
     repeat: -1,
     yoyo: true,
     ease: 'sine.inOut',
   })
 
-  scrollHandler = () => {
-    if (scrollHandler) {
-      window.removeEventListener('wheel', scrollHandler)
-      window.removeEventListener('touchmove', scrollHandler)
-    }
-    gsap.to(scrollEl.value, { opacity: 0, duration: 0.5 })
-    router.push('/nossa-historia')
+  touchStartHandler = (e: TouchEvent) => {
+    touchStartX = e.touches[0].clientX
   }
 
-  window.addEventListener('wheel', scrollHandler, { once: true })
-  window.addEventListener('touchmove', scrollHandler, { once: true })
+  touchEndHandler = (e: TouchEvent) => {
+    const deltaX = e.changedTouches[0].clientX - touchStartX
+    if (deltaX > 50) navigate()
+  }
+
+  window.addEventListener('touchstart', touchStartHandler)
+  window.addEventListener('touchend', touchEndHandler)
 })
 
+async function navigate() {
+  if (touchStartHandler) window.removeEventListener('touchstart', touchStartHandler)
+  if (touchEndHandler)   window.removeEventListener('touchend', touchEndHandler)
+  gsap.to(scrollEl.value, { opacity: 0, duration: 0.4 })
+  await router.push('/nossa-historia')
+}
+
 onUnmounted(() => {
-  if (scrollHandler) {
-    window.removeEventListener('wheel', scrollHandler)
-    window.removeEventListener('touchmove', scrollHandler)
-  }
+  if (touchStartHandler) window.removeEventListener('touchstart', touchStartHandler)
+  if (touchEndHandler)   window.removeEventListener('touchend', touchEndHandler)
 })
 </script>

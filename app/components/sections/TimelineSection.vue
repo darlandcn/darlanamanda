@@ -2,17 +2,17 @@
   <section
     id="section-timeline"
     data-section="timeline"
-    class="section-base min-h-screen bg-night relative py-24"
+    class="section-base min-h-screen bg-abyss relative py-24"
   >
-    <div aria-hidden="true" class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-rose-800 to-transparent opacity-40" />
+    <div aria-hidden="true" class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-slate-600 to-transparent opacity-20" />
 
     <div class="relative z-10 w-full max-w-3xl mx-auto px-6">
       <!-- Cabeçalho -->
       <div ref="headerRef" class="text-center mb-20">
-        <p class="text-xs uppercase tracking-[0.3em] text-rose-400 mb-3">Nossa linha do tempo</p>
-        <h2 class="font-serif text-4xl md:text-5xl text-blush-text">
+        <p class="text-xs uppercase tracking-[0.3em] text-slate-300 mb-3">Nossa linha do tempo</p>
+        <h2 class="font-serif text-4xl md:text-5xl text-ivory">
           Momentos que<br />
-          <span class="italic text-gradient-rose">nos definem</span>
+          <span class="italic text-gradient-gold">nos definem</span>
         </h2>
       </div>
 
@@ -21,7 +21,7 @@
         ref="timelineLineRef"
         aria-hidden="true"
         class="timeline-axis absolute left-1/2 -translate-x-1/2 top-52 bottom-24 w-px
-               bg-gradient-to-b from-rose-800 via-rose-700 to-transparent opacity-30"
+               bg-gradient-to-b from-abyss-400 via-slate-600 to-transparent opacity-30"
       />
 
       <!-- Eventos -->
@@ -41,16 +41,16 @@
             ]"
           >
             <template v-if="index % 2 === 0">
-              <span class="text-xs text-gold-500 tracking-widest uppercase">{{ event.date }}</span>
-              <h3 class="font-serif text-xl text-blush-text mt-1 mb-2">{{ event.title }}</h3>
-              <p class="text-sm text-blush-muted leading-relaxed">{{ event.description }}</p>
+              <span class="text-xs text-slate-400 tracking-widest uppercase">{{ event.date }}</span>
+              <h3 class="font-serif text-xl text-ivory mt-1 mb-2">{{ event.title }}</h3>
+              <p class="text-sm text-ivory-200 leading-relaxed">{{ event.description }}</p>
             </template>
           </div>
 
           <!-- Ponto central -->
           <div class="flex flex-col items-center pt-1">
             <div
-              class="w-3 h-3 rounded-full border-2 border-rose-600 bg-night shadow-[0_0_12px_rgba(219,39,119,0.4)]"
+              class="w-3 h-3 rounded-full border-2 border-slate-400 bg-abyss shadow-[0_0_12px_rgba(148,163,184,0.2)]"
             />
           </div>
 
@@ -62,9 +62,9 @@
             ]"
           >
             <template v-if="index % 2 !== 0">
-              <span class="text-xs text-gold-500 tracking-widest uppercase">{{ event.date }}</span>
-              <h3 class="font-serif text-xl text-blush-text mt-1 mb-2">{{ event.title }}</h3>
-              <p class="text-sm text-blush-muted leading-relaxed">{{ event.description }}</p>
+              <span class="text-xs text-slate-400 tracking-widest uppercase">{{ event.date }}</span>
+              <h3 class="font-serif text-xl text-ivory mt-1 mb-2">{{ event.title }}</h3>
+              <p class="text-sm text-ivory-200 leading-relaxed">{{ event.description }}</p>
             </template>
           </div>
         </div>

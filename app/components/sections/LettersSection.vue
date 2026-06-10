@@ -2,25 +2,25 @@
   <section
     id="section-letters"
     data-section="letters"
-    class="section-base min-h-screen bg-night relative py-24"
+    class="section-base min-h-screen bg-abyss relative py-24"
   >
-    <div aria-hidden="true" class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-rose-800 to-transparent opacity-40" />
+    <div aria-hidden="true" class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-slate-600 to-transparent opacity-20" />
 
     <!-- Orb decorativo -->
     <div
       aria-hidden="true"
       class="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-             w-[500px] h-[500px] rounded-full opacity-8 blur-[120px]"
-      style="background: radial-gradient(circle, #ca8a04, transparent)"
+             w-[500px] h-[500px] rounded-full opacity-5 blur-[120px]"
+      style="background: radial-gradient(circle, rgba(148,163,184,0.4), transparent)"
     />
 
     <div class="relative z-10 w-full max-w-4xl mx-auto px-6">
       <!-- Cabeçalho -->
       <div ref="headerRef" class="text-center mb-16">
-        <p class="text-xs uppercase tracking-[0.3em] text-gold-500 mb-3">Capítulo IV</p>
-        <h2 class="font-serif text-4xl md:text-5xl text-blush-text">
+        <p class="text-xs uppercase tracking-[0.3em] text-slate-300 mb-3">Capítulo IV</p>
+        <h2 class="font-serif text-4xl md:text-5xl text-ivory">
           Palavras do<br />
-          <span class="italic" style="color: #ca8a04">coração</span>
+          <span class="italic text-gradient-gold">coração</span>
         </h2>
       </div>
 
@@ -32,18 +32,18 @@
           ref="lettersRefs"
           data-gsap="letter-card"
           class="letter-card glass-card relative rounded-2xl p-8 group cursor-default
-                 hover:border-rose-700/30 transition-all duration-500"
+                 hover:border-slate-500/20 transition-all duration-500"
         >
           <!-- Ícone de envelope decorativo -->
           <div class="mb-5 flex items-center justify-between">
-            <span class="text-xs uppercase tracking-[0.25em] text-gold-600">
+            <span class="text-xs uppercase tracking-[0.25em] text-slate-400">
               {{ letter.label }}
             </span>
             <svg
               width="20" height="20"
               viewBox="0 0 24 24"
               fill="none"
-              class="text-rose-600 opacity-60 group-hover:opacity-100 transition-opacity"
+              class="text-slate-300 opacity-40 group-hover:opacity-70 transition-opacity"
             >
               <path
                 d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
@@ -55,20 +55,20 @@
             </svg>
           </div>
 
-          <h3 class="font-serif text-xl text-blush-text mb-3">{{ letter.title }}</h3>
-          <p class="text-sm text-blush-muted leading-relaxed">{{ letter.preview }}</p>
+          <h3 class="font-serif text-xl text-ivory mb-3">{{ letter.title }}</h3>
+          <p class="text-sm text-ivory-200 leading-relaxed">{{ letter.preview }}</p>
 
           <!-- Linha de data -->
           <div class="mt-6 flex items-center gap-2">
-            <div class="flex-1 h-px bg-night-300" />
-            <span class="text-xs text-blush-muted">{{ letter.date }}</span>
+            <div class="flex-1 h-px bg-abyss-300" />
+            <span class="text-xs text-ivory-200">{{ letter.date }}</span>
           </div>
 
           <!-- Brilho no hover -->
           <div
             class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100
                    transition-opacity duration-500 pointer-events-none"
-            style="background: radial-gradient(ellipse at top left, rgba(202,138,4,0.05), transparent)"
+            style="background: radial-gradient(ellipse at top left, rgba(148,163,184,0.04), transparent)"
           />
         </div>
       </div>

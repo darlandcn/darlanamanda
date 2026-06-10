@@ -2,27 +2,16 @@
 
 /* ── CSS Custom Properties ────────────────────────────────────────────── */
 :root {
-  /* Palette — Tela de Acesso */
-  --bg-primary:    #080808;
-  --gold-primary:  #C9A96E;
-  --gold-glow:     #D4B483;
-  --gold-divider:  #8B6E3E;
-  --text-primary:  #F0EBE0;
-  --text-muted:    #7A7168;
-  --input-bg:      #0F0F0F;
-  --button-bg:     #EDE4D3;
-  --button-text:   #1A1410;
-
-  /* Palette — Nossa História */
-  --color-night:      #0A0108;
-  --color-night-100:  #130A10;
-  --color-night-200:  #1E1018;
-  --color-night-300:  #2C1520;
-  --color-rose:       #db2777;
-  --color-rose-light: #f472b6;
-  --color-gold:       #ca8a04;
-  --color-text:       #F5E6EE;
-  --color-text-muted: #c8a4b8;
+  /* Palette */
+  --bg-primary:     #080808;
+  --slate:          #94A3B8;
+  --slate-light:    #CBD5E1;
+  --slate-dark:     #334155;
+  --text-primary:   #F0EBE0;
+  --text-muted:     #7A7168;
+  --input-bg:       #0F0F0F;
+  --button-bg:      #EDE4D3;
+  --button-text:    #1A1410;
 
   /* Z-index scale */
   --z-particles: 0;
@@ -41,7 +30,7 @@
 }
 
 html {
-  scroll-behavior: auto; /* Lenis gerencia o scroll */
+  scroll-behavior: auto;
   background: var(--bg-primary);
 }
 
@@ -65,14 +54,8 @@ p { line-height: 1.75; }
 .font-cormorant { font-family: 'Cormorant Garamond', Georgia, serif; }
 .font-playfair  { font-family: 'Playfair Display', Georgia, serif; }
 
-.text-gradient-rose {
-  background: linear-gradient(135deg, #f472b6, #db2777, #ca8a04);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
 .text-gradient-gold {
-  background: linear-gradient(135deg, var(--gold-glow), var(--gold-primary), var(--gold-divider));
+  background: linear-gradient(135deg, var(--slate-light), var(--slate), var(--slate-dark));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -80,12 +63,12 @@ p { line-height: 1.75; }
 
 /* ── Glassmorphism Card ───────────────────────────────────────────────── */
 .glass-card {
-  background: rgba(19, 10, 16, 0.7);
+  background: rgba(17, 17, 17, 0.7);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(219, 39, 119, 0.15);
+  border: 1px solid rgba(148, 163, 184, 0.08);
   box-shadow:
-    0 0 40px rgba(219, 39, 119, 0.06),
+    0 0 40px rgba(148, 163, 184, 0.03),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
@@ -112,8 +95,8 @@ p { line-height: 1.75; }
 /* ── Scrollbar ────────────────────────────────────────────────────────── */
 ::-webkit-scrollbar              { width: 4px; }
 ::-webkit-scrollbar-track        { background: var(--bg-primary); }
-::-webkit-scrollbar-thumb        { background: #2C1520; border-radius: 2px; }
-::-webkit-scrollbar-thumb:hover  { background: var(--color-rose); }
+::-webkit-scrollbar-thumb        { background: #262626; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover  { background: #404040; }
 
 /* ── Date / Text Input placeholder center ────────────────────────────── */
 input::placeholder { text-align: center; }

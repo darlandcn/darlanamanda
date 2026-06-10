@@ -1,5 +1,5 @@
 <template>
-  <main id="nossa-historia" ref="pageRef" class="relative bg-night">
+  <main id="nossa-historia" ref="pageRef" class="relative bg-abyss">
     <HeroSection />
     <IntroSection />
     <TimelineSection />

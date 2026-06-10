@@ -2,23 +2,22 @@
   <section
     id="section-gallery"
     data-section="gallery"
-    class="section-base min-h-screen bg-night-100 relative py-24"
+    class="section-base min-h-screen bg-abyss-100 relative py-24"
   >
-    <div aria-hidden="true" class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-rose-800 to-transparent opacity-40" />
+    <div aria-hidden="true" class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-slate-600 to-transparent opacity-20" />
 
     <div class="relative z-10 w-full max-w-6xl mx-auto px-6">
       <!-- Cabeçalho -->
       <div ref="headerRef" class="text-center mb-16">
-        <p class="text-xs uppercase tracking-[0.3em] text-rose-400 mb-3">Capítulo III</p>
-        <h2 class="font-serif text-4xl md:text-5xl text-blush-text">
+        <p class="text-xs uppercase tracking-[0.3em] text-slate-300 mb-3">Capítulo III</p>
+        <h2 class="font-serif text-4xl md:text-5xl text-ivory">
           Memórias em<br />
-          <span class="italic text-gradient-rose">imagens</span>
+          <span class="italic text-gradient-gold">imagens</span>
         </h2>
       </div>
 
       <!-- Grid de galeria -->
       <div ref="gridRef" class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
-        <!-- Item destaque (grande) -->
         <div
           v-for="item in galleryItems"
           :key="item.id"
@@ -46,10 +45,10 @@
 
           <!-- Overlay hover -->
           <div
-            class="absolute inset-0 bg-gradient-to-t from-night/80 via-transparent to-transparent
+            class="absolute inset-0 bg-gradient-to-t from-abyss/80 via-transparent to-transparent
                    opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4"
           >
-            <p class="text-xs text-blush-text tracking-wide">{{ item.caption }}</p>
+            <p class="text-xs text-ivory tracking-wide">{{ item.caption }}</p>
           </div>
 
           <!-- Borda interna decorativa -->
@@ -75,11 +74,11 @@ const itemsRefs = ref<HTMLElement[]>([])
 const { fadeInUp } = useGsapAnimations()
 
 const galleryItems = [
-  { id: 1, featured: true,  caption: 'Foto especial',   gradient: 'linear-gradient(135deg, #2C1520, #3D1D2D)' },
-  { id: 2, featured: false, caption: 'Momento único',   gradient: 'linear-gradient(135deg, #1E1018, #2C1520)' },
-  { id: 3, featured: false, caption: 'Lembrança',       gradient: 'linear-gradient(135deg, #130A10, #1E1018)' },
-  { id: 4, featured: false, caption: 'Memória',         gradient: 'linear-gradient(135deg, #2C1520, #1E1018)' },
-  { id: 5, featured: false, caption: 'Detalhe especial',gradient: 'linear-gradient(135deg, #3D1D2D, #2C1520)' },
+  { id: 1, featured: true,  caption: 'Foto especial',   gradient: 'linear-gradient(135deg, #171717, #262626)' },
+  { id: 2, featured: false, caption: 'Momento único',   gradient: 'linear-gradient(135deg, #111111, #171717)' },
+  { id: 3, featured: false, caption: 'Lembrança',       gradient: 'linear-gradient(135deg, #0A0A0A, #111111)' },
+  { id: 4, featured: false, caption: 'Memória',         gradient: 'linear-gradient(135deg, #171717, #111111)' },
+  { id: 5, featured: false, caption: 'Detalhe especial',gradient: 'linear-gradient(135deg, #262626, #171717)' },
 ]
 
 onMounted(() => {

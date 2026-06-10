@@ -12,43 +12,34 @@ export default {
         sans: ['Inter', 'sans-serif'],
       },
       colors: {
-        night: {
-          DEFAULT: '#0A0108',
-          100: '#130A10',
-          200: '#1E1018',
-          300: '#2C1520',
-          400: '#3D1D2D',
+        abyss: {
+          DEFAULT: '#0A0A0A',
+          100: '#111111',
+          200: '#171717',
+          300: '#262626',
+          400: '#404040',
         },
-        rose: {
-          50:  '#fff0f7',
-          100: '#ffe0ef',
-          200: '#ffc2de',
-          300: '#ff91c0',
-          400: '#f472b6',
-          500: '#ec4899',
-          600: '#db2777',
-          700: '#be185d',
-          800: '#9d174d',
-          900: '#831843',
-          950: '#500724',
+        slate: {
+          50:  '#F2F4F7',
+          100: '#E7EBF1',
+          200: '#CBD5E1',
+          300: '#94A3B8',
+          400: '#64748B',
+          500: '#475569',
+          600: '#334155',
         },
-        gold: {
-          300: '#fcd34d',
-          400: '#fbbf24',
-          500: '#f59e0b',
-          600: '#ca8a04',
-          700: '#a16207',
-        },
-        blush: {
-          DEFAULT: '#f9e0ec',
-          muted: '#c8a4b8',
-          text: '#F5E6EE',
+        ivory: {
+          DEFAULT: '#F5F5F5',
+          100: '#E5E5E5',
+          200: '#A3A3A3',
         },
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'rose-glow': 'radial-gradient(ellipse at center, #db277733 0%, transparent 70%)',
-        'gold-glow': 'radial-gradient(ellipse at center, #ca8a0422 0%, transparent 70%)',
+        'slate-glow':
+          'radial-gradient(ellipse at center, rgba(148,163,184,0.12) 0%, transparent 70%)',
+        'subtle-light-glow':
+          'radial-gradient(ellipse at center, rgba(255,255,255,0.04) 0%, transparent 70%)',
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',

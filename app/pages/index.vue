@@ -14,9 +14,9 @@
     </div>
 
     <!-- ② Overlay de vinhete -->
-    <div style="position: fixed; inset: 0; z-index: 2; pointer-events: none; background: radial-gradient(ellipse 110% 90% at 50% 0%, transparent 25%, #080808 80%), radial-gradient(ellipse 50% 25% at 50% 4%, rgba(120,80,30,0.12) 0%, transparent 100%);" />
+    <div style="position: fixed; inset: 0; z-index: 2; pointer-events: none; background: radial-gradient(ellipse 110% 90% at 50% 0%, transparent 25%, #080808 80%), radial-gradient(ellipse 50% 25% at 50% 4%, rgba(148,163,184,0.05) 0%, transparent 100%);" />
 
-    <!-- ③ Partículas douradas no fundo -->
+    <!-- ③ Partículas -->
     <ParticlesBackground />
 
     <!-- Sparkle — topo independente -->
@@ -37,7 +37,7 @@
         width="24" height="24"
         viewBox="0 0 24 24"
         fill="none"
-        stroke="#C9A96E"
+        stroke="#94A3B8"
         stroke-width="1.5"
         stroke-linecap="round"
         stroke-linejoin="round"
@@ -76,7 +76,7 @@
             font-family: 'Cormorant Garamond', Georgia, serif;
             font-size: clamp(1.9rem, 5vw, 2.6rem);
             font-weight: 400;
-            line-height: 1.45;
+            line-height: 1.1;
             color: #F0EBE0;
             text-align: center;
             max-width: 420px;
@@ -87,13 +87,13 @@
           só nós dois conhecemos.
         </h1>
 
-        <!-- Linha divisória dourada -->
+        <!-- Linha divisória -->
         <div
           class="divider"
           style="
             width: 80px;
             height: 1px;
-            background: #8B6E3E;
+            background: #475569;
             margin: 0 auto 24px;
           "
         />
@@ -106,7 +106,7 @@
             font-size: 0.875rem;
             font-weight: 300;
             letter-spacing: 0.08em;
-            color: #7A7168;
+            color: #64748B;
             text-align: center;
             text-transform: uppercase;
             margin-bottom: 32px;
@@ -130,7 +130,7 @@
               style="
                 width: 100%;
                 background: #0F0F0F;
-                border: 1px solid #C9A96E;
+                border: 1px solid rgba(148,163,184,0.25);
                 border-radius: 12px;
                 padding: 18px 20px;
                 font-size: 1rem;
@@ -154,7 +154,7 @@
                   font-family: 'Inter', sans-serif;
                   font-size: 0.8rem;
                   font-weight: 300;
-                  color: #C9A96E;
+                  color: #94A3B8;
                   letter-spacing: 0.03em;
                 "
               >
@@ -169,7 +169,7 @@
             :disabled="isEntering"
             style="
               width: 100%;
-              background: #EDE4D3;
+              background: #E7EBF1;
               color: #1A1410;
               border: none;
               border-radius: 12px;
@@ -180,14 +180,15 @@
               letter-spacing: 0.04em;
               cursor: pointer;
               display: flex;
-              justify-content: space-between;
+              justify-content: center;
               align-items: center;
+              gap: 10px;
               transition: background 0.2s, transform 0.1s;
             "
             :style="isEntering ? 'opacity: 0.6; cursor: not-allowed;' : ''"
             @click="handleEnter"
-            @mouseenter="(e) => { if (!isEntering) (e.currentTarget as HTMLElement).style.background = '#F5EDE0' }"
-            @mouseleave="(e) => { (e.currentTarget as HTMLElement).style.background = '#EDE4D3' }"
+            @mouseenter="(e) => { if (!isEntering) (e.currentTarget as HTMLElement).style.background = '#F2F4F7' }"
+            @mouseleave="(e) => { (e.currentTarget as HTMLElement).style.background = '#E7EBF1' }"
             @mousedown="(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(0.99)' }"
             @mouseup="(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1)' }"
           >
