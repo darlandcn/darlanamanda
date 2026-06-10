@@ -191,7 +191,7 @@
             @mousedown="(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(0.99)' }"
             @mouseup="(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1)' }"
           >
-            <span>{{ isEntering ? 'Abrindo...' : 'Entrar' }}</span>
+            <span>{{ isEntering ? 'Verificando...' : 'Entrar' }}</span>
             <svg
               v-if="!isEntering"
               width="20" height="20"
@@ -249,15 +249,18 @@ async function handleEnter() {
 
   isEntering.value = true
 
+  // Aguarda 1.5s com estado "Verificando..."
+  await new Promise(resolve => setTimeout(resolve, 1500))
+
+  // Fade out cinematográfico de tudo
   await gsap.to('.page-content', {
     opacity: 0,
-    scale: 1.05,
-    duration: 1,
+    duration: 0.8,
     ease: 'power2.in',
   })
 
   sessionStorage.setItem('granted', 'true')
-  await router.push('/nossa-historia')
+  await router.push('/intro')
 }
 
 function formatDate(e: Event) {
