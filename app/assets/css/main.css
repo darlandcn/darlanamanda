@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
+/* ── CSS Custom Properties ────────────────────────────────────────────── */
+:root {
+  /* Palette — Tela de Acesso */
+  --bg-primary:    #080808;
+  --gold-primary:  #C9A96E;
+  --gold-glow:     #D4B483;
+  --gold-divider:  #8B6E3E;
+  --text-primary:  #F0EBE0;
+  --text-muted:    #7A7168;
+  --input-bg:      #0F0F0F;
+  --button-bg:     #EDE4D3;
+  --button-text:   #1A1410;
+
+  /* Palette — Nossa História */
+  --color-night:      #0A0108;
+  --color-night-100:  #130A10;
+  --color-night-200:  #1E1018;
+  --color-night-300:  #2C1520;
+  --color-rose:       #db2777;
+  --color-rose-light: #f472b6;
+  --color-gold:       #ca8a04;
+  --color-text:       #F5E6EE;
+  --color-text-muted: #c8a4b8;
+
+  /* Z-index scale */
+  --z-particles: 0;
+  --z-silhouette: 5;
+  --z-content:   10;
+  --z-overlay:   20;
+  --z-modal:     30;
+  --z-toast:     50;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: auto; /* Lenis gerencia o scroll */
+  background: var(--bg-primary);
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #080808;
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ── Typography ───────────────────────────────────────────────────────── */
+h1, h2, h3, h4 {
+  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  line-height: 1.2;
+}
+
+p { line-height: 1.75; }
+
+.font-cormorant { font-family: 'Cormorant Garamond', Georgia, serif; }
+.font-playfair  { font-family: 'Playfair Display', Georgia, serif; }
+
+.text-gradient-rose {
+  background: linear-gradient(135deg, #f472b6, #db2777, #ca8a04);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.text-gradient-gold {
+  background: linear-gradient(135deg, var(--gold-glow), var(--gold-primary), var(--gold-divider));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Glassmorphism Card ───────────────────────────────────────────────── */
+.glass-card {
+  background: rgba(19, 10, 16, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(219, 39, 119, 0.15);
+  box-shadow:
+    0 0 40px rgba(219, 39, 119, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+/* ── Section Base ─────────────────────────────────────────────────────── */
+.section-base {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* ── Shake Animation ──────────────────────────────────────────────────── */
+@keyframes shake {
+  0%,  100% { transform: translateX(0); }
+  15%        { transform: translateX(-8px); }
+  35%        { transform: translateX(8px); }
+  55%        { transform: translateX(-5px); }
+  75%        { transform: translateX(5px); }
+}
+.shake { animation: shake 0.5s ease; }
+
+/* ── Scrollbar ────────────────────────────────────────────────────────── */
+::-webkit-scrollbar              { width: 4px; }
+::-webkit-scrollbar-track        { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb        { background: #2C1520; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover  { background: var(--color-rose); }
+
+/* ── Date / Text Input placeholder center ────────────────────────────── */
+input::placeholder { text-align: center; }
+
+/* ── Date Input ───────────────────────────────────────────────────────── */
+input[type='date']::-webkit-calendar-picker-indicator {
+  filter: invert(0.6) sepia(1) saturate(3) hue-rotate(290deg);
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 200ms;
+}
+
+/* ── Reduced Motion ───────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

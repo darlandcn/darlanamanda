@@ -1,0 +1,63 @@
+<template>
+  <div
+    aria-hidden="true"
+    style="position: absolute; inset: 0; min-height: 100vh; z-index: 3; pointer-events: none;"
+  >
+    <component
+      :is="ParticlesComp"
+      v-if="isReady && ParticlesComp"
+      id="romantic-particles"
+      :options="particlesOptions"
+      style="width: 100%; height: 100%;"
+    />
+  </div>
+</template>
+
+<script lang="ts" setup>
+import { ref, onMounted, markRaw } from 'vue'
+
+defineOptions({ name: 'ParticlesBackground' })
+
+const isReady      = ref(false)
+const ParticlesComp = ref<object | null>(null)
+
+const particlesOptions = {
+  background: {
+    color: { value: 'transparent' },
+  },
+  particles: {
+    number: { value: 80 },
+    color: {
+      value: ['#C9A96E', '#F0EBE0', '#8B6E3E'],
+    },
+    opacity: {
+      value: { min: 0.1, max: 0.5 },
+      animation: { enable: true, speed: 0.5 },
+    },
+    size: {
+      value: { min: 0.5, max: 2 },
+    },
+    move: {
+      enable: true,
+      speed: 0.2,
+      direction: 'none' as const,
+      random: true,
+      outModes: { default: 'out' as const },
+    },
+    twinkle: {
+      particles: { enable: true, frequency: 0.05, opacity: 1 },
+    },
+  },
+  detectRetina: true,
+}
+
+onMounted(async () => {
+  try {
+    const { Particles } = await import('@tsparticles/vue3')
+    ParticlesComp.value = markRaw(Particles)
+    isReady.value = true
+  } catch (e) {
+    console.warn('[ParticlesBackground] Failed to load tsParticles:', e)
+  }
+})
+</script>
