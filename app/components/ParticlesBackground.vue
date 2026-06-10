@@ -3,9 +3,7 @@
     aria-hidden="true"
     style="position: absolute; inset: 0; min-height: 100vh; z-index: 3; pointer-events: none;"
   >
-    <component
-      :is="ParticlesComp"
-      v-if="isReady && ParticlesComp"
+    <vue-particles
       id="romantic-particles"
       :options="particlesOptions"
       style="width: 100%; height: 100%;"
@@ -14,12 +12,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted, markRaw } from 'vue'
-
 defineOptions({ name: 'ParticlesBackground' })
-
-const isReady      = ref(false)
-const ParticlesComp = ref<object | null>(null)
 
 const particlesOptions = {
   background: {
@@ -50,14 +43,4 @@ const particlesOptions = {
   },
   detectRetina: true,
 }
-
-onMounted(async () => {
-  try {
-    const { Particles } = await import('@tsparticles/vue3')
-    ParticlesComp.value = markRaw(Particles)
-    isReady.value = true
-  } catch (e) {
-    console.warn('[ParticlesBackground] Failed to load tsParticles:', e)
-  }
-})
 </script>

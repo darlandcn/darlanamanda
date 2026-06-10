@@ -126,7 +126,7 @@
               inputmode="numeric"
               placeholder="dd/mm/aaaa"
               maxlength="10"
-              v-maska="'##/##/####'"
+              @input="formatDate"
               style="
                 width: 100%;
                 background: #0F0F0F;
@@ -136,6 +136,7 @@
                 font-size: 1rem;
                 color: #F0EBE0;
                 letter-spacing: 0.1em;
+                text-align: center;
                 outline: none;
                 box-sizing: border-box;
               "
@@ -225,12 +226,12 @@
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { gsap } from 'gsap'
-import { vMaska } from 'maska'
 
 import SparkleIcon        from '~/components/SparkleIcon.vue'
 import ParticlesBackground from '~/components/ParticlesBackground.vue'
 import { useAccess }      from '~/composables/useAccess'
 
+definePageMeta({ ssr: false })
 defineOptions({ name: 'AccessPage' })
 
 const router = useRouter()
@@ -257,6 +258,17 @@ async function handleEnter() {
 
   sessionStorage.setItem('granted', 'true')
   await router.push('/nossa-historia')
+}
+
+function formatDate(e: Event) {
+  const el = e.target as HTMLInputElement
+  const digits = el.value.replace(/\D/g, '').substring(0, 8)
+  let f = ''
+  for (let i = 0; i < digits.length; i++) {
+    if (i === 2 || i === 4) f += '/'
+    f += digits[i]
+  }
+  el.value = f
 }
 
 // ── Animações de entrada ───────────────────────────────────────────────
