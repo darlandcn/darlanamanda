@@ -5,9 +5,6 @@
     <TimelineSection />
     <GallerySection />
     <LettersSection />
-    <StarsSection />
-    <VideoSection />
-    <FinalSection />
   </main>
 </template>
 
@@ -22,9 +19,6 @@ import IntroSection    from '~/components/sections/IntroSection.vue'
 import TimelineSection from '~/components/sections/TimelineSection.vue'
 import GallerySection  from '~/components/sections/GallerySection.vue'
 import LettersSection  from '~/components/sections/LettersSection.vue'
-import StarsSection    from '~/components/sections/StarsSection.vue'
-import VideoSection    from '~/components/sections/VideoSection.vue'
-import FinalSection    from '~/components/sections/FinalSection.vue'
 
 defineOptions({ name: 'NossaHistoriaPage' })
 

@@ -15,7 +15,9 @@
           <span class="italic text-gradient-gold">do tempo</span>
         </h2>
         <p class="mt-5 text-sm text-ivory-200 leading-relaxed">
-          E depois daqueles dias na estância tivemos vários momentos
+          Hoje eu reconheço que o Senhor precisou nos separar, e depois de muita oração, depois de muito tempo, graças a Deus, Ele nos uniu.
+          <br /><br />
+          E aí se iniciou a segunda fase da nossa história que também não foi de tudo fácil.
         </p>
       </div>
 
@@ -36,17 +38,21 @@
           data-gsap="timeline-item"
           class="timeline-item relative grid grid-cols-[1fr_auto_1fr] gap-4 items-start"
         >
-          <!-- Conteúdo esquerdo (índices pares) -->
-          <div
-            :class="[
-              'timeline-content',
-              index % 2 === 0 ? 'text-right pr-4' : 'opacity-0 pointer-events-none',
-            ]"
-          >
+          <!-- Coluna esquerda: texto (par) ou imagem (ímpar) -->
+          <div :class="['flex flex-col', index % 2 === 0 ? 'text-right pr-4 items-end' : 'items-end justify-center pr-4']">
             <template v-if="index % 2 === 0">
               <span class="text-xs text-slate-400 tracking-widest uppercase">{{ event.date }}</span>
               <h3 class="font-serif text-xl text-ivory mt-1 mb-2">{{ event.title }}</h3>
               <p class="text-sm text-ivory-200 leading-relaxed">{{ event.description }}</p>
+            </template>
+            <template v-else-if="event.image">
+              <button type="button" class="focus:outline-none" @click="lightboxSrc = event.image ?? null">
+                <img
+                  :src="event.image"
+                  :alt="event.title"
+                  class="w-full rounded-lg opacity-85 cursor-pointer hover:opacity-100 transition-opacity duration-300"
+                />
+              </button>
             </template>
           </div>
 
@@ -57,22 +63,51 @@
             />
           </div>
 
-          <!-- Conteúdo direito (índices ímpares) -->
-          <div
-            :class="[
-              'timeline-content',
-              index % 2 !== 0 ? 'text-left pl-4' : 'opacity-0 pointer-events-none',
-            ]"
-          >
+          <!-- Coluna direita: imagem (par) ou texto (ímpar) -->
+          <div :class="['flex flex-col', index % 2 !== 0 ? 'text-left pl-4' : 'items-start justify-center pl-4']">
             <template v-if="index % 2 !== 0">
               <span class="text-xs text-slate-400 tracking-widest uppercase">{{ event.date }}</span>
               <h3 class="font-serif text-xl text-ivory mt-1 mb-2">{{ event.title }}</h3>
               <p class="text-sm text-ivory-200 leading-relaxed">{{ event.description }}</p>
             </template>
+            <template v-else-if="event.image">
+              <button type="button" class="focus:outline-none" @click="lightboxSrc = event.image ?? null">
+                <img
+                  :src="event.image"
+                  :alt="event.title"
+                  class="w-full rounded-lg opacity-85 cursor-pointer hover:opacity-100 transition-opacity duration-300"
+                />
+              </button>
+            </template>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- Lightbox -->
+    <Transition name="lightbox">
+      <div
+        v-if="lightboxSrc"
+        class="fixed inset-0 z-50 flex items-center justify-center p-4"
+      >
+        <div class="absolute inset-0 bg-black/95 backdrop-blur-sm" @click="lightboxSrc = null" />
+
+        <button
+          type="button"
+          class="absolute top-4 right-4 z-10 text-white/60 hover:text-white transition-colors bg-white/10 rounded-full p-2"
+          @click="lightboxSrc = null"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+
+        <img
+          :src="lightboxSrc"
+          class="relative z-10 max-w-full max-h-[90vh] rounded-xl object-contain shadow-2xl"
+        />
+      </div>
+    </Transition>
   </section>
 </template>
 
@@ -88,15 +123,16 @@ defineOptions({ name: 'TimelineSection' })
 const headerRef       = ref<HTMLElement | null>(null)
 const timelineLineRef = ref<HTMLElement | null>(null)
 const eventsRefs      = ref<HTMLElement[]>([])
+const lightboxSrc     = ref<string | null>(null)
 
 const { fadeInUp } = useGsapAnimations()
 
 const placeholderEvents: (TimelineEvent & { id: number })[] = [
-  { id: 1, date: 'Mês, Ano', title: 'O primeiro encontro',  description: 'Descreva aqui como foi o momento em que tudo começou.' },
-  { id: 2, date: 'Mês, Ano', title: 'Nossa primeira viagem', description: 'Um lugar especial que ficou gravado em nossos corações.' },
-  { id: 3, date: 'Mês, Ano', title: 'Um dia inesquecível',   description: 'Aquele dia que nos surpreendeu e ficou na memória para sempre.' },
-  { id: 4, date: 'Mês, Ano', title: 'Mais um capítulo',      description: 'Cada nova página da nossa história é mais bonita que a anterior.' },
-  { id: 5, date: 'Hoje',     title: 'E a história continua', description: 'O melhor ainda está por vir, e quero viver cada momento ao seu lado.' },
+  { id: 1, date: '26 Abr', title: 'O Recomeço', description: 'Uma mensagem que pra você não era nada demais, mas pra mim era uma resposta do Senhor.', image: '/images/evento1.jpeg' },
+  { id: 2, date: '15 Jun', title: 'A ligação mais aguardada', description: 'Só de lembrar consigo sentir o quanto estava ansioso com essa ligação e o quanto eu saí aliviado dela. Afinal, não é todo o dia que as pessoas são correspondidas quando expressam seus sentimentos.', image: '/images/evento2.jpeg' },
+  { id: 3, date: '17 Jun', title: 'As provações', description: 'E dois dias depois os irmãos nos deram essa direção. A partir dai não foi nada fácil, mas tinhamos clareza de que essa direção vinha do Senhor.', image: '/images/evento3.jpeg' },
+  { id: 4, date: 'Jun – Dez', title: '', description: 'Passamos 6 meses assim, virando a noite, ajustando horários pra conseguir conversar, conseguir ligar, muitas comunhões, algumas incertezas, esperando o momento em que nos veríamos pessoalmente.', image: '/images/evento4.jpeg' },
+  { id: 5, date: '15 Jan', title: 'O Reencontro', description: 'E finalmente nos reencontramos, conversamos, e desde ali eu já tinha certeza que você era e seria minha prioridade.', image: '/images/evento5.jpeg' },
 ]
 
 onMounted(() => {
@@ -136,3 +172,14 @@ onMounted(() => {
   })
 })
 </script>
+
+<style scoped>
+.lightbox-enter-active,
+.lightbox-leave-active {
+  transition: opacity 0.2s ease;
+}
+.lightbox-enter-from,
+.lightbox-leave-to {
+  opacity: 0;
+}
+</style>
