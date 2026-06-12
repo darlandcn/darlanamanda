@@ -47,11 +47,6 @@
             gap: '8px',
             borderRight: index % 3 !== 2 ? '1px solid rgba(226,232,240,0.12)' : 'none',
           }"
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-          "
         >
           <span style="
             font-family: 'Pier Sans', sans-serif;
