@@ -1,7 +1,7 @@
 <template>
   <div
     id="access-page"
-    style="min-height: 100vh; position: relative;"
+    style="min-height: 100dvh; position: relative;"
   >
     <!-- ① Foto do casal -->
     <div style="position: fixed; inset: 0; z-index: 1; overflow: hidden;">
@@ -36,7 +36,7 @@
     <!-- Cadeado — base independente -->
     <div
       class="lock-icon"
-      style="position: fixed; bottom: 4vh; left: 50%; transform: translateX(-50%); z-index: 10; display: flex; justify-content: center;"
+      style="position: fixed; bottom: 4vh; left: 50%; transform: translateX(-50%); z-index: 10; display: flex; justify-content: center; padding-bottom: env(safe-area-inset-bottom, 0px);"
       aria-hidden="true"
     >
       <svg
@@ -60,7 +60,7 @@
       style="
         position: relative;
         z-index: 10;
-        min-height: 100vh;
+        min-height: 100dvh;
         display: flex;
         align-items: center;
         justify-content: center;

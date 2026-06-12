@@ -2,6 +2,7 @@
 
 /* ── CSS Custom Properties ────────────────────────────────────────────── */
 :root {
+  --dvh: 1dvh;
   --bg-primary:       #0A0F1A;
   --bg-secondary:     #111827;
   --bg-elevated:      #1E293B;
@@ -95,7 +96,7 @@ p { line-height: 1.75; }
   background: #0A0F1A;
   color: #F8FAFC;
   position: relative;
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;

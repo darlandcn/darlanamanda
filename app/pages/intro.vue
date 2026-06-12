@@ -1,6 +1,6 @@
 <template>
   <div
-    style="position: relative; width: 100%; min-height: 100vh; background: #0A0F1A; overflow: hidden; cursor: pointer;"
+    style="position: relative; width: 100%; min-height: 100dvh; background: #0A0F1A; overflow: hidden; cursor: pointer;"
     @click="onScreenClick"
   >
     <!-- Foto do casal -->

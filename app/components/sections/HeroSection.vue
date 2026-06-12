@@ -60,7 +60,7 @@
         v-if="showSwipeHint"
         ref="swipeHintRef"
         class="absolute bottom-8 left-1/2 -translate-x-1/2"
-        style="display: flex; flex-direction: column; gap: 12px; pointer-events: none; align-items: center;"
+        style="display: flex; flex-direction: column; gap: 12px; pointer-events: none; align-items: center; padding-bottom: env(safe-area-inset-bottom, 0px);"
       >
         <div style="display: flex; align-items: center; gap: 8px;">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none">

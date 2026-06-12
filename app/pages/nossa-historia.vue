@@ -1,5 +1,5 @@
 <template>
-  <div style="position: relative; width: 100%; height: 100vh; overflow: hidden; background: #0A0F1A;">
+  <div style="position: relative; width: 100%; height: 100dvh; overflow: hidden; background: #0A0F1A;">
 
     <div style="
       position: fixed;

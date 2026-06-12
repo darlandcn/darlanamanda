@@ -1,7 +1,7 @@
 <template>
   <div
     aria-hidden="true"
-    style="position: absolute; inset: 0; min-height: 100vh; z-index: 3; pointer-events: none;"
+    style="position: absolute; inset: 0; min-height: 100dvh; z-index: 3; pointer-events: none;"
   >
     <vue-particles
       :id="id"
