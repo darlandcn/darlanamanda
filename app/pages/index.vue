@@ -6,7 +6,7 @@
     <!-- ① Foto do casal -->
     <div style="position: fixed; inset: 0; z-index: 1; overflow: hidden;">
       <img
-        src="/images/couple.jpeg"
+        :src="media.img('couple.jpeg')"
         alt=""
         aria-hidden="true"
         style="display: block; width: 100%; height: 115%; object-fit: cover; object-position: 40% top; transform: translateY(-15%); filter: brightness(0.5) saturate(0.7); -webkit-mask-image: linear-gradient(to bottom, black 0%, black 40%, rgba(0,0,0,0.5) 65%, transparent 88%); mask-image: linear-gradient(to bottom, black 0%, black 40%, rgba(0,0,0,0.5) 65%, transparent 88%);"
@@ -226,6 +226,7 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import { useMedia } from '~/composables/useMedia'
 import { gsap } from 'gsap'
 
 import SparkleIcon        from '~/components/SparkleIcon.vue'
@@ -236,6 +237,7 @@ definePageMeta({ ssr: false })
 defineOptions({ name: 'AccessPage' })
 
 const router = useRouter()
+const media  = useMedia()
 const { validate, errorMessage, isShaking } = useAccess()
 
 const isEntering = ref(false)

@@ -14,7 +14,7 @@
       style="position: fixed; inset: 0; z-index: 1; overflow: hidden;"
     >
       <img
-        src="/images/couple.jpeg"
+        :src="media.img('couple.jpeg')"
         alt=""
         aria-hidden="true"
         style="
@@ -145,6 +145,7 @@
 <script lang="ts" setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
+import { useMedia } from '~/composables/useMedia'
 import { gsap } from 'gsap'
 import ParticlesBackground from '~/components/ParticlesBackground.vue'
 
@@ -152,6 +153,7 @@ definePageMeta({ ssr: false })
 defineOptions({ name: 'IntroPage' })
 
 const router = useRouter()
+const media  = useMedia()
 
 const bgPhoto   = ref<HTMLElement | null>(null)
 const lockEl    = ref<HTMLElement | null>(null)
