@@ -9,8 +9,11 @@
 
     <div aria-hidden="true" class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[rgba(226,232,240,0.18)] to-transparent opacity-60" />
 
-    <!-- Título -->
+    <!-- Label + Título -->
     <div ref="headerRef" class="relative z-10 w-full max-w-lg mx-auto px-6 pt-[7.5rem] space-y-3 text-center">
+      <div class="flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-ink-muted"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg>
+      </div>
       <h2 class="font-serif text-4xl md:text-5xl text-ink leading-none text-center">
         Contando<br />
         <span class="text-gradient-gold">cada segundo</span>
@@ -20,7 +23,7 @@
     <!-- Texto -->
     <div class="relative z-10 w-full max-w-lg mx-auto px-6 mt-16 mb-16 text-center">
       <p class="text-base md:text-lg text-ink-light leading-relaxed">
-        Desde o primeiro beijo até aqui.
+        Desde o primeiro beijo até aqui<br />já se passaram:
       </p>
     </div>
 
@@ -72,7 +75,7 @@
     <!-- Texto abaixo do contador -->
     <div class="relative z-10 w-full max-w-lg mx-auto px-6 mt-36 text-center flex-1 pb-24">
       <p class="text-base md:text-lg text-ink-light leading-relaxed">
-        "E ainda tem muito mais por vir..."
+        E ainda temos um "sempre" pela frente.
       </p>
     </div>
 

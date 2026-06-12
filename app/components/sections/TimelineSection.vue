@@ -21,9 +21,7 @@
     <!-- Texto -->
     <div class="relative z-10 w-full max-w-3xl mx-auto px-6 mt-16 mb-16 text-left">
       <p class="text-sm text-ink-light leading-relaxed">
-        Hoje eu reconheço que o Senhor precisou nos afastar, e depois de muita oração, depois de muito tempo, Ele nos uniu.
-        <br />
-        E aí se iniciou o "segundo capítulo" da nossa história que também não foi de tudo fácil.
+        Hoje eu reconheço que o Senhor precisou nos afastar, e depois de muito tempo, e de muitaaa oração, Ele nos uniu. Então se iniciou o "segundo capítulo" da nossa história que também não foi de tudo fácil.
       </p>
     </div>
 
@@ -34,7 +32,7 @@
         ref="timelineLineRef"
         aria-hidden="true"
         class="timeline-axis absolute left-1/2 -translate-x-1/2 top-52 bottom-24 w-px
-               bg-gradient-to-b from-transparent via-[rgba(226,232,240,0.18)] to-transparent opacity-60"
+               bg-gradient-to-b from-transparent via-[rgba(226,232,240,0.6)] to-transparent opacity-90"
       />
 
       <!-- Eventos -->
@@ -186,7 +184,7 @@ onMounted(() => {
       { opacity: 0, x: i % 2 === 0 ? -60 : 60 },
       {
         opacity: 1, x: 0, duration: 1, ease: 'power3.out',
-        scrollTrigger: { trigger: el, scroller, start: 'top 82%', toggleActions: 'play none none none' },
+        scrollTrigger: { trigger: el, scroller, start: i === eventsRefs.value.length - 1 ? 'top 80%' : 'top 40%', toggleActions: 'play none none none' },
       },
     )
   })

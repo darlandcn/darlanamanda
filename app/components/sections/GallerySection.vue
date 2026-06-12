@@ -32,31 +32,22 @@
           v-for="item in galleryItems"
           :key="item.id"
           ref="itemsRefs"
-          class="flip-card w-full aspect-square cursor-pointer"
-          @click="item.flipped = !item.flipped"
+          class="polaroid w-full flex flex-col"
         >
-          <div class="flip-card-inner" :class="{ flipped: item.flipped }">
-
-            <!-- Frente: polaroid -->
-            <div class="flip-card-face polaroid rounded-none overflow-visible">
-              <img
-                :src="item.src"
-                :alt="item.caption"
-                class="w-full h-full object-cover"
-              />
-            </div>
-
-            <!-- Verso: carta manuscrita -->
-            <div class="flip-card-face flip-card-back overflow-hidden"
-                 style="border-radius: 2px; background: #1E293B; border: 1px solid rgba(226,232,240,0.12); box-shadow: 0 0 40px rgba(226,232,240,0.08);">
-              <div class="absolute inset-x-4 top-4 bottom-4 pointer-events-none z-0 flex flex-col justify-between">
-                <div v-for="n in 18" :key="n" class="h-px bg-[rgba(226,232,240,0.10)]" />
-              </div>
-              <div class="relative z-10 h-full px-5 py-5 overflow-hidden">
-                <p class="font-caveat text-[#F8FAFC] text-[19px] leading-[1.45] whitespace-pre-line">{{ item.letter }}</p>
-              </div>
-            </div>
-
+          <img
+            v-if="item.src"
+            :src="item.src"
+            :alt="item.label"
+            class="w-full h-auto block"
+          />
+          <div
+            v-else
+            class="w-full flex items-center justify-center"
+            style="height: 280px; background: #E2E8F0;"
+          />
+          <div class="relative flex items-center justify-center" style="height: 64px;">
+            <span style="font-family: 'Inter', sans-serif; font-size: 0.65rem; font-weight: 300; letter-spacing: 0.15em; text-transform: uppercase; color: #0A0F1A;">{{ item.label }}</span>
+            <span style="position: absolute; right: 10px; bottom: 4px; font-family: 'Inter', sans-serif; font-size: 0.6rem; font-weight: 300; letter-spacing: 0.08em; color: #94A3B8;">{{ item.date }}</span>
           </div>
         </div>
       </div>
@@ -67,7 +58,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, reactive, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import { gsap } from 'gsap'
 import { useGsapAnimations } from '~/composables/useGsapAnimations'
 import { useMedia } from '~/composables/useMedia'
@@ -82,43 +73,18 @@ const { fadeInUp } = useGsapAnimations()
 
 const { img } = useMedia()
 
-const galleryItems = reactive([
-  {
-    id: 1,
-    src: img('mem1.jpeg'),
-    caption: 'Memória 1',
-    flipped: false,
-    letter: `Texto da carta 1...`,
-  },
-  {
-    id: 4,
-    src: img('mem4.jpeg'),
-    caption: 'Memória 4',
-    flipped: false,
-    letter: `Texto da carta 4...`,
-  },
-  {
-    id: 2,
-    src: img('mem2.jpeg'),
-    caption: 'Memória 2',
-    flipped: false,
-    letter: `Texto da carta 2...`,
-  },
-  {
-    id: 3,
-    src: img('mem3.jpeg'),
-    caption: 'Memória 3',
-    flipped: false,
-    letter: `Texto da carta 3...`,
-  },
-  {
-    id: 5,
-    src: img('mem5.jpeg'),
-    caption: 'Memória 5',
-    flipped: false,
-    letter: `Texto da carta 5...`,
-  },
-])
+const galleryItems = [
+  { id: 1, src: img('memo1.jpeg'),   label: 'nosso primeiro beijo',              date: '02 fev 2026' },
+  { id: 2, src: '',                  label: 'a benção dos seus pais',             date: '15 fev 2026' },
+  { id: 3, src: img('memo3.jpeg'),  label: 'primeiro café em casa com meus pais', date: '17 fev 2026' },
+  { id: 4, src: img('memo4.jpeg'),  label: 'primeiro não encontro',              date: '22 fev 2026' },
+  { id: 5, src: img('memo5.jpeg'),  label: 'sua primeira vez lá em casa',        date: '08 mar 2026' },
+  { id: 6, src: img('memo6.jpeg'),  label: 'primeira foto de familia',           date: '28 mar 2026' },
+  { id: 7, src: img('memo7.jpeg'),  label: 'primeira viagem juntos',             date: '01 mai 2026' },
+  { id: 8, src: img('memo8.jpeg'),  label: 'minha primeira vez na sua casa',     date: '23 mai 2026' },
+  { id: 9, src: img('memo9.jpeg'),  label: 'visita ao nosso possivel ap',        date: '30 mai 2026' },
+  { id: 10, src: '',               label: 'nosso primeiro dia dos namorados',   date: '12 jun 2026' },
+]
 
 onMounted(() => {
   fadeInUp(headerRef.value)
@@ -138,27 +104,3 @@ onMounted(() => {
 })
 </script>
 
-<style scoped>
-.flip-card {
-  perspective: 1000px;
-}
-.flip-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.flip-card-inner.flipped {
-  transform: rotateY(180deg);
-}
-.flip-card-face {
-  position: absolute;
-  inset: 0;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
-.flip-card-back {
-  transform: rotateY(180deg);
-}
-</style>

@@ -8,11 +8,9 @@ export function useAccess() {
   const isShaking    = ref(false)
 
   const errorMessages = [
-    'Hmm... essa não é a data. Pensa melhor. 💭',
-    'Quase... mas não. Você foi lá? 😏',
-    'Tenho certeza que você se lembra disso. 🥺',
-    'Vai na memória afetiva. Você sabe.',
-    'Tão perto, mas tão longe... 🌙',
+    'Hmm... essa não é a data. Pensa melhor.',
+    'Quer uma dica??',
+    'Tenho certeza que você se lembra disso. 💋',
   ]
 
   function validate(date: string): boolean {

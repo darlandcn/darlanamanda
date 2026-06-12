@@ -6,18 +6,24 @@
     <!-- ① Foto do casal -->
     <div style="position: fixed; inset: 0; z-index: 1; overflow: hidden;">
       <img
-        :src="media.img('couple.jpeg')"
+        :src="media.img('couple2.jpeg')"
         alt=""
         aria-hidden="true"
-        style="display: block; width: 100%; height: 115%; object-fit: cover; object-position: 40% top; transform: translateY(-15%); filter: brightness(0.5) saturate(0.7); -webkit-mask-image: linear-gradient(to bottom, black 0%, black 40%, rgba(0,0,0,0.5) 65%, transparent 88%); mask-image: linear-gradient(to bottom, black 0%, black 40%, rgba(0,0,0,0.5) 65%, transparent 88%);"
+        style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: 22% top; transform: translateY(-19%); filter: brightness(0.5) saturate(0.7); -webkit-mask-image: linear-gradient(to bottom, black 0%, black 55%, rgba(0,0,0,0.5) 75%, transparent 93%); mask-image: linear-gradient(to bottom, black 0%, black 55%, rgba(0,0,0,0.5) 75%, transparent 93%);"
       />
     </div>
 
     <!-- ② Overlay de vinhete -->
     <div style="position: fixed; inset: 0; z-index: 2; pointer-events: none; background: radial-gradient(ellipse 110% 90% at 50% 0%, transparent 25%, #0A0F1A 80%), radial-gradient(ellipse 50% 25% at 50% 4%, rgba(148,163,184,0.05) 0%, transparent 100%);" />
 
-    <!-- ③ Partículas -->
-    <ParticlesBackground />
+    <!-- ③ Partículas — mascaradas para aparecer apenas nas bordas escuras -->
+    <div style="
+      position: fixed; inset: 0; z-index: 3; pointer-events: none;
+      -webkit-mask-image: radial-gradient(ellipse 65% 60% at 50% 28%, transparent 0%, transparent 38%, black 73%);
+      mask-image: radial-gradient(ellipse 65% 60% at 50% 28%, transparent 0%, transparent 38%, black 73%);
+    ">
+      <ParticlesBackground />
+    </div>
 
     <!-- Sparkle — topo independente -->
     <div
@@ -156,6 +162,7 @@
                   font-weight: 400;
                   color: #94A3B8;
                   letter-spacing: 0.03em;
+                  text-align: center;
                 "
               >
                 {{ errorMessage }}

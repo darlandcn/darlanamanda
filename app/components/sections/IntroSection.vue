@@ -17,7 +17,7 @@
         Capítulo I
       </p>
       <h2 class="font-serif text-4xl md:text-5xl text-ink leading-none text-center">
-        Onde tudo<br />
+        Como tudo<br />
         <span class="text-gradient-gold">começou</span>
       </h2>
     </div>

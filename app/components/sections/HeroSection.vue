@@ -5,6 +5,19 @@
     class="section-base relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
     style="background: transparent;"
   >
+    <!-- Foto de fundo -->
+    <div style="position: absolute; inset: 0; z-index: 0; overflow: hidden;">
+      <img
+        :src="img('couple.jpeg')"
+        alt=""
+        aria-hidden="true"
+        style="display: block; width: 100%; height: 115%; object-fit: cover; object-position: 45% top; transform: translateY(-19%); filter: brightness(0.5) saturate(0.7); -webkit-mask-image: linear-gradient(to bottom, black 0%, black 65%, rgba(0,0,0,0.5) 82%, transparent 96%); mask-image: linear-gradient(to bottom, black 0%, black 65%, rgba(0,0,0,0.5) 82%, transparent 96%);"
+      />
+    </div>
+
+    <!-- Overlay de vinheta -->
+    <div aria-hidden="true" style="position: absolute; inset: 0; z-index: 1; pointer-events: none; background: radial-gradient(ellipse 110% 90% at 50% 0%, transparent 25%, #0A0F1A 80%), radial-gradient(ellipse 50% 25% at 50% 4%, rgba(148,163,184,0.05) 0%, transparent 100%);" />
+
     <!-- Partículas -->
     <ParticlesBackground id="hero-particles" />
 
@@ -20,12 +33,12 @@
     </div>
 
 
-    <div class="relative z-10 text-left px-6 max-w-2xl w-full ml-6 md:ml-12 -mt-24">
+    <div class="relative z-10 px-6 w-full mt-32">
       <!-- Título principal -->
       <h1
         ref="titleRef"
         data-gsap="fade-up"
-        class="hero-title font-serif text-[3.45rem] md:text-[5.175rem] font-semibold text-ink mb-6 opacity-0 leading-none"
+        class="hero-title font-serif text-[3.45rem] md:text-[5.175rem] font-semibold text-ink mb-6 opacity-0 leading-none w-fit mx-auto text-left"
       >
         Darlan &amp;<br />
         <em class="not-italic text-ink">Amanda</em>
@@ -36,7 +49,7 @@
     <p
       ref="subtitleRef"
       data-gsap="fade-up"
-      class="hero-subtitle absolute bottom-[7.5rem] left-10 right-10 text-base md:text-lg text-ink-light leading-relaxed"
+      class="hero-subtitle absolute bottom-[7.5rem] left-10 right-10 text-base md:text-lg text-ink-light leading-relaxed z-10"
     >
       Eii você... Bolei isso com muito amor, muito carinho, pra recordar tudo o que vivemos e nos fez chegar até aqui. Tá preparada?
     </p>
@@ -77,10 +90,13 @@
 import { ref, onMounted } from 'vue'
 import { gsap } from 'gsap'
 import ParticlesBackground from '~/components/ParticlesBackground.vue'
+import { useMedia } from '~/composables/useMedia'
 
 defineOptions({ name: 'HeroSection' })
 
 const props = defineProps<{ showSwipeHint?: boolean }>()
+
+const { img } = useMedia()
 
 const titleRef     = ref<HTMLElement | null>(null)
 const subtitleRef  = ref<HTMLElement | null>(null)
