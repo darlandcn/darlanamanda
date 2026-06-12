@@ -6,11 +6,11 @@
     viewBox="0 0 36 36"
     xmlns="http://www.w3.org/2000/svg"
     aria-hidden="true"
-    style="filter: drop-shadow(0 0 6px rgba(148,163,184,0.25)); display: block;"
+    style="filter: drop-shadow(0 0 6px rgba(226,232,240,0.30)); display: block;"
   >
     <path
       d="M18 2 L20.5 15.5 L34 18 L20.5 20.5 L18 34 L15.5 20.5 L2 18 L15.5 15.5 Z"
-      fill="#94A3B8"
+      fill="#CBD5E1"
     />
   </svg>
 </template>

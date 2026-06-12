@@ -12,7 +12,7 @@ useHead({
   htmlAttrs: { lang: 'pt-BR' },
   meta: [
     { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-    { name: 'theme-color', content: '#0A0A0A' },
+    { name: 'theme-color', content: '#0A0F1A' },
   ],
 })
 </script>

@@ -2,68 +2,74 @@
   <section
     id="section-hero"
     data-section="hero"
-    class="section-base relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-abyss"
+    class="section-base relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
+    style="background: transparent;"
   >
     <!-- Partículas -->
     <ParticlesBackground id="hero-particles" />
 
-    <!-- Orb decorativo -->
+    <!-- Orb decorativo — calor suave no centro -->
     <div
       aria-hidden="true"
       class="hero-orb pointer-events-none absolute inset-0 flex items-center justify-center"
     >
-      <div class="w-[700px] h-[700px] rounded-full opacity-8 blur-[160px]"
-           style="background: radial-gradient(circle, rgba(148,163,184,0.25) 0%, rgba(71,85,105,0.08) 50%, transparent 70%)" />
+      <div
+        class="w-[600px] h-[600px] rounded-full blur-[180px]"
+        style="background: radial-gradient(circle, rgba(226,232,240,0.08) 0%, rgba(226,232,240,0.04) 50%, transparent 70%)"
+      />
     </div>
 
-    <!-- Linha decorativa -->
-    <div
-      ref="lineRef"
-      aria-hidden="true"
-      class="hero-line absolute top-1/2 left-1/2 -translate-x-1/2 w-px bg-gradient-to-b from-transparent via-slate-600 to-transparent opacity-25"
-      style="height: 40vh"
-    />
 
-    <div ref="contentRef" class="relative z-10 text-center px-6 max-w-2xl mx-auto">
-      <!-- Eyebrow -->
-      <p
-        ref="eyebrowRef"
-        data-gsap="fade-up"
-        class="hero-eyebrow text-xs uppercase tracking-[0.35em] text-slate-300 mb-6 opacity-0"
-      >
-        O começo de tudo
-      </p>
-
+    <div class="relative z-10 text-left px-6 max-w-2xl w-full ml-6 md:ml-12 -mt-24">
       <!-- Título principal -->
       <h1
         ref="titleRef"
         data-gsap="fade-up"
-        class="hero-title font-serif text-5xl md:text-7xl font-semibold text-ivory mb-6 opacity-0 leading-[1.1]"
+        class="hero-title font-serif text-[3.45rem] md:text-[5.175rem] font-semibold text-ink mb-6 opacity-0 leading-none"
       >
-        Nossa<br />
-        <em class="italic text-gradient-gold not-italic">História</em>
+        Darlan &amp;<br />
+        <em class="not-italic text-ink">Amanda</em>
       </h1>
-
-      <!-- Subtítulo -->
-      <p
-        ref="subtitleRef"
-        data-gsap="fade-up"
-        class="hero-subtitle text-base md:text-lg text-ivory-200 max-w-md mx-auto leading-relaxed opacity-0"
-      >
-        Algumas memórias merecem ser lembradas para sempre.
-      </p>
-
-      <!-- Indicador de scroll -->
-      <div
-        ref="scrollIndicatorRef"
-        data-gsap="fade-up"
-        class="hero-scroll mt-16 flex flex-col items-center gap-2 opacity-0"
-        aria-label="Role para baixo"
-      >
-        <span class="text-xs text-ivory-200 tracking-widest uppercase">Continue</span>
-        <div class="w-px h-12 bg-gradient-to-b from-slate-400 to-transparent animate-pulse-slow" />
-      </div>
     </div>
+
+    <!-- Subtítulo fixo perto do rodapé -->
+    <p
+      ref="subtitleRef"
+      data-gsap="fade-up"
+      class="hero-subtitle absolute bottom-[7.5rem] left-10 right-10 text-base md:text-lg text-ink-light leading-relaxed"
+    >
+      Eii você... Bolei isso com muito amor, muito carinho, pra recordar tudo o que vivemos e nos fez chegar até aqui. Tá preparada?
+    </p>
+
+    <!-- Swipe hint -->
+    <Transition name="hint-fade">
+      <div
+        v-if="showSwipeHint"
+        ref="swipeHintRef"
+        class="absolute bottom-8 left-1/2 -translate-x-1/2"
+        style="display: flex; flex-direction: column; gap: 12px; pointer-events: none; align-items: center;"
+      >
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <path d="M9 11V6a2 2 0 1 1 4 0v5" stroke="#F0EBE0" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M13 10V8a2 2 0 1 1 4 0v4" stroke="#F0EBE0" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M9 11a2 2 0 0 0-2 2v1l.5 4A4 4 0 0 0 11.4 21h1.2a4 4 0 0 0 3.9-3l.5-4V8" stroke="#F0EBE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9 11V9a2 2 0 0 0-2 0v2" stroke="#F0EBE0" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M5 12h14M13 6l6 6-6 6" stroke="rgba(201,169,110,0.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span style="
+          font-family: 'Inter', sans-serif;
+          font-size: 0.7rem;
+          font-weight: 300;
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          color: #7A7168;
+        ">deslize para continuar</span>
+      </div>
+    </Transition>
   </section>
 </template>
 
@@ -74,28 +80,16 @@ import ParticlesBackground from '~/components/ParticlesBackground.vue'
 
 defineOptions({ name: 'HeroSection' })
 
-const lineRef            = ref<HTMLElement | null>(null)
-const contentRef         = ref<HTMLElement | null>(null)
-const eyebrowRef         = ref<HTMLElement | null>(null)
-const titleRef           = ref<HTMLElement | null>(null)
-const subtitleRef        = ref<HTMLElement | null>(null)
-const scrollIndicatorRef = ref<HTMLElement | null>(null)
+const props = defineProps<{ showSwipeHint?: boolean }>()
+
+const titleRef     = ref<HTMLElement | null>(null)
+const subtitleRef  = ref<HTMLElement | null>(null)
+const swipeHintRef = ref<HTMLElement | null>(null)
 
 onMounted(() => {
   const tl = gsap.timeline({ delay: 0.3, defaults: { ease: 'power3.out' } })
 
   tl.fromTo(
-    lineRef.value,
-    { scaleY: 0, transformOrigin: 'top' },
-    { scaleY: 1, duration: 1.2, ease: 'power2.inOut' },
-  )
-  .fromTo(
-    eyebrowRef.value,
-    { opacity: 0, y: 20 },
-    { opacity: 1, y: 0, duration: 0.8 },
-    '-=0.5',
-  )
-  .fromTo(
     titleRef.value,
     { opacity: 0, y: 40 },
     { opacity: 1, y: 0, duration: 1 },
@@ -107,14 +101,7 @@ onMounted(() => {
     { opacity: 1, y: 0, duration: 0.8 },
     '-=0.5',
   )
-  .fromTo(
-    scrollIndicatorRef.value,
-    { opacity: 0 },
-    { opacity: 1, duration: 0.6 },
-    '-=0.2',
-  )
 
-  // Orb pulsante
   gsap.to('.hero-orb > div', {
     scale: 1.15,
     duration: 4,
@@ -122,5 +109,21 @@ onMounted(() => {
     yoyo: true,
     ease: 'sine.inOut',
   })
+
+  if (swipeHintRef.value) {
+    gsap.to(swipeHintRef.value, {
+      x: 12,
+      duration: 0.8,
+      repeat: -1,
+      yoyo: true,
+      ease: 'power1.inOut',
+      delay: 1,
+    })
+  }
 })
 </script>
+
+<style scoped>
+.hint-fade-leave-active { transition: opacity 0.4s ease; }
+.hint-fade-leave-to     { opacity: 0; }
+</style>

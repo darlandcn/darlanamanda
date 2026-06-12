@@ -8,33 +8,38 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        serif: ['Playfair Display', 'Georgia', 'serif'],
+        serif: ['Pier Sans', 'sans-serif'],
         sans: ['Inter', 'sans-serif'],
         script: ['Dancing Script', 'cursive'],
         oleo: ['Oleo Script', 'cursive'],
         caveat: ['Caveat', 'cursive'],
       },
       colors: {
+        base:     '#0A0F1A',
+        surface:  '#111827',
+        elevated: '#1E293B',
+        overlay:  '#0D1424',
+        ink: {
+          DEFAULT: '#F8FAFC',
+          light:   '#CBD5E1',
+          muted:   '#94A3B8',
+        },
+        accent: {
+          DEFAULT:   '#E2E8F0',
+          secondary: '#D1D5DB',
+          hover:     '#F1F5F9',
+        },
         abyss: {
-          DEFAULT: '#0A0A0A',
-          100: '#111111',
-          200: '#171717',
-          300: '#262626',
-          400: '#404040',
+          DEFAULT: '#0A0F1E',
         },
         slate: {
-          50:  '#F2F4F7',
-          100: '#E7EBF1',
-          200: '#CBD5E1',
-          300: '#94A3B8',
-          400: '#64748B',
-          500: '#475569',
-          600: '#334155',
-        },
-        ivory: {
-          DEFAULT: '#F5F5F5',
-          100: '#E5E5E5',
-          200: '#A3A3A3',
+          50:  '#F8FAFC',
+          100: '#F1F5F9',
+          200: '#E2E8F0',
+          300: '#CBD5E1',
+          400: '#94A3B8',
+          500: '#64748B',
+          600: '#475569',
         },
       },
       backgroundImage: {

@@ -4,7 +4,7 @@
       position: relative;
       width: 100%;
       min-height: 100vh;
-      background: #080808;
+      background: #0A0F1A;
       overflow: hidden;
     "
   >
@@ -95,11 +95,11 @@
     >
       <p
         style="
-          font-family: 'Cormorant Garamond', Georgia, serif;
+          font-family: 'Pier Sans';
           font-size: clamp(1.4rem, 4vw, 2rem);
           font-weight: 400;
           line-height: 1.5;
-          color: #F0EBE0;
+          color: #F8FAFC;
           letter-spacing: 0.01em;
         "
       >
@@ -130,7 +130,7 @@
         style="
           font-family: 'Inter', sans-serif;
           font-size: 0.75rem;
-          font-weight: 300;
+          font-weight: 400;
           letter-spacing: 0.14em;
           color: #CBD5E1;
           text-transform: uppercase;
@@ -157,17 +157,11 @@ const bgPhoto   = ref<HTMLElement | null>(null)
 const lockEl    = ref<HTMLElement | null>(null)
 const phraseEl  = ref<HTMLElement | null>(null)
 const scrollEl  = ref<HTMLElement | null>(null)
-const arrowEl   = ref<HTMLElement | null>(null)
 
 const lockOpen      = ref(false)
 const currentPhrase = ref('')
 
-const phrases = [
-  'Nem tudo aconteceu do jeito que imaginávamos.',
-  'Mas cada passo nos trouxe até aqui.',
-  'E o melhor...',
-  'Ainda temos muito para viver.',
-]
+const phrases: string[] = []
 
 async function showPhrase(text: string, inDuration: number, hold: number, outDuration: number) {
   currentPhrase.value = text
@@ -218,22 +212,8 @@ onMounted(async () => {
   // Cadeado some
   await gsap.to(lockEl.value, { opacity: 0, scale: 0.8, duration: 0.6, ease: 'power2.in' })
 
-  // ── Cenas 3–6: frases ──────────────────────────────────────────
-  await showPhrase(phrases[0], 1, 3.5, 0.5)
-  await showPhrase(phrases[1], 1, 3.5, 0.5)
-  await showPhrase(phrases[2], 0.8, 1.7, 0.5)
-  await showPhrase(phrases[3], 1, 4, 1)
-
   // ── Cena 7: convite para rolar ─────────────────────────────────
   await gsap.to(scrollEl.value, { opacity: 1, duration: 1, ease: 'power2.out' })
-
-  gsap.to(arrowEl.value, {
-    x: 5,
-    duration: 0.9,
-    repeat: -1,
-    yoyo: true,
-    ease: 'sine.inOut',
-  })
 
   touchStartHandler = (e: TouchEvent) => {
     touchStartX = e.touches[0].clientX

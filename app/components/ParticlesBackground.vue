@@ -25,24 +25,24 @@ const particlesOptions = {
   particles: {
     number: { value: 80 },
     color: {
-      value: ['#94A3B8', '#CBD5E1', '#F5F5F5'],
+      value: ['#FFFFFF', '#F8FAFC', '#E2E8F0', '#CBD5E1'],
     },
     opacity: {
-      value: { min: 0.05, max: 0.35 },
+      value: { min: 0.25, max: 0.75 },
       animation: { enable: true, speed: 0.4 },
     },
     size: {
-      value: { min: 0.4, max: 1.8 },
+      value: { min: 0.4, max: 2 },
     },
     move: {
       enable: true,
-      speed: 0.15,
+      speed: 0.1,
       direction: 'none' as const,
       random: true,
       outModes: { default: 'out' as const },
     },
     twinkle: {
-      particles: { enable: true, frequency: 0.04, opacity: 0.8 },
+      particles: { enable: true, frequency: 0.06, opacity: 1 },
     },
   },
   detectRetina: true,

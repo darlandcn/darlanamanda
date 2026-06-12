@@ -14,7 +14,7 @@
     </div>
 
     <!-- ② Overlay de vinhete -->
-    <div style="position: fixed; inset: 0; z-index: 2; pointer-events: none; background: radial-gradient(ellipse 110% 90% at 50% 0%, transparent 25%, #080808 80%), radial-gradient(ellipse 50% 25% at 50% 4%, rgba(148,163,184,0.05) 0%, transparent 100%);" />
+    <div style="position: fixed; inset: 0; z-index: 2; pointer-events: none; background: radial-gradient(ellipse 110% 90% at 50% 0%, transparent 25%, #0A0F1A 80%), radial-gradient(ellipse 50% 25% at 50% 4%, rgba(148,163,184,0.05) 0%, transparent 100%);" />
 
     <!-- ③ Partículas -->
     <ParticlesBackground />
@@ -73,11 +73,11 @@
         <h1
           class="heading"
           style="
-            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-family: 'Pier Sans';
             font-size: clamp(1.9rem, 5vw, 2.6rem);
             font-weight: 400;
             line-height: 1.1;
-            color: #F0EBE0;
+            color: #F8FAFC;
             text-align: center;
             max-width: 420px;
             margin: 0 auto 28px;
@@ -104,7 +104,7 @@
           style="
             font-family: 'Inter', sans-serif;
             font-size: 0.875rem;
-            font-weight: 300;
+            font-weight: 400;
             letter-spacing: 0.08em;
             color: #64748B;
             text-align: center;
@@ -129,12 +129,12 @@
               @input="formatDate"
               style="
                 width: 100%;
-                background: #0F0F0F;
+                background: #111827;
                 border: 1px solid rgba(148,163,184,0.25);
                 border-radius: 12px;
                 padding: 18px 20px;
                 font-size: 1rem;
-                color: #F0EBE0;
+                color: #F8FAFC;
                 letter-spacing: 0.1em;
                 text-align: center;
                 outline: none;
@@ -153,7 +153,7 @@
                   padding: 0 4px;
                   font-family: 'Inter', sans-serif;
                   font-size: 0.8rem;
-                  font-weight: 300;
+                  font-weight: 400;
                   color: #94A3B8;
                   letter-spacing: 0.03em;
                 "
