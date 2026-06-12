@@ -126,12 +126,9 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
 import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useMedia } from '~/composables/useMedia'
 import ParticlesBackground from '~/components/ParticlesBackground.vue'
 import type { TimelineEvent } from '~/../../shared/types/index'
-
-gsap.registerPlugin(ScrollTrigger)
 
 defineOptions({ name: 'TimelineSection' })
 
@@ -142,15 +139,6 @@ const lightboxSrc     = ref<string | null>(null)
 
 const { img } = useMedia()
 
-function findScroller(el: HTMLElement | null): HTMLElement | Window {
-  let node = el?.parentElement ?? null
-  while (node) {
-    const { overflowY } = getComputedStyle(node)
-    if (overflowY === 'auto' || overflowY === 'scroll') return node
-    node = node.parentElement
-  }
-  return window
-}
 
 const placeholderEvents: (TimelineEvent & { id: number })[] = [
   { id: 1, date: '26 Abr 2025', title: 'O Recomeço', description: 'Voltamos a conversar graças a uma foto e a uma mensagem (nada tendenciosa) que pra você não era nada demais, mas que pra mim era uma resposta do Senhor.', image: img('evento1.jpeg') },
@@ -161,36 +149,24 @@ const placeholderEvents: (TimelineEvent & { id: number })[] = [
 ]
 
 onMounted(() => {
-  const scroller = findScroller(headerRef.value)
+  const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
 
-  gsap.fromTo(
-    headerRef.value,
-    { opacity: 0, y: 60 },
-    {
-      opacity: 1, y: 0, duration: 1, ease: 'power3.out',
-      scrollTrigger: { trigger: headerRef.value, scroller, start: 'top 82%', toggleActions: 'play none none none' },
-    },
+  tl.fromTo(headerRef.value,
+    { opacity: 0, y: 40 },
+    { opacity: 1, y: 0, duration: 0.8 }
   )
 
-  gsap.fromTo(
-    timelineLineRef.value,
+  tl.fromTo(timelineLineRef.value,
     { scaleY: 0, transformOrigin: 'top' },
-    {
-      scaleY: 1, duration: 2, ease: 'power2.inOut',
-      scrollTrigger: { trigger: timelineLineRef.value, scroller, start: 'top 85%', toggleActions: 'play none none none' },
-    },
+    { scaleY: 1, duration: 1, ease: 'power2.inOut' },
+    '-=0.4'
   )
 
-  eventsRefs.value.forEach((el, i) => {
-    gsap.fromTo(
-      el,
-      { opacity: 0, x: i % 2 === 0 ? -60 : 60 },
-      {
-        opacity: 1, x: 0, duration: 1, ease: 'power3.out',
-        scrollTrigger: { trigger: el, scroller, start: i === eventsRefs.value.length - 1 ? 'top 80%' : 'top 40%', toggleActions: 'play none none none' },
-      },
-    )
-  })
+  tl.fromTo(eventsRefs.value,
+    { opacity: 0, y: 20 },
+    { opacity: 1, y: 0, duration: 0.6, stagger: 0.12 },
+    '-=0.6'
+  )
 })
 </script>
 

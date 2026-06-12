@@ -54,7 +54,7 @@
           <Transition name="reveal">
             <div
               v-if="cardVisible"
-              class="flip-card w-80 h-[370px] flex-shrink-0 cursor-pointer"
+              class="flip-card w-80 h-[400px] flex-shrink-0 cursor-pointer"
               @click="photoFlipped = !photoFlipped"
             >
               <div class="flip-card-inner" :class="{ flipped: photoFlipped }">
@@ -76,15 +76,23 @@
                 <div class="flip-card-face flip-card-back overflow-hidden" style="background: #F8FAFC;">
                   <div class="absolute inset-0 pointer-events-none z-0" style="overflow: hidden;">
                     <div
-                      v-for="n in 12"
+                      v-for="n in 13"
                       :key="n"
                       class="absolute w-full"
                       style="height: 1px; background: rgba(0,0,0,0.12);"
                       :style="{ top: (16 + n * 28) + 'px' }"
                     />
                   </div>
-                  <div class="relative z-10 h-full px-5 py-4">
+                  <div class="relative z-10 h-full px-5 py-4 flex flex-col">
                     <p class="font-caveat text-[#111827] text-[19px] leading-[28px] whitespace-pre-line">{{ letterText }}</p>
+                    <button
+                      type="button"
+                      class="mt-2 self-end text-xs uppercase tracking-[0.25em] hover:opacity-60 transition-all duration-300"
+                      style="color: #0A0F1A;"
+                      @click.stop="galleryOpen = !galleryOpen"
+                    >
+                      {{ galleryOpen ? 'Fechar' : 'Ver mais...' }}
+                    </button>
                   </div>
                 </div>
 
@@ -92,17 +100,6 @@
             </div>
           </Transition>
 
-          <!-- Botão ver mais -->
-          <Transition name="reveal">
-            <button
-              v-if="cardVisible"
-              type="button"
-              class="mt-12 text-xs uppercase tracking-[0.25em] text-ink hover:opacity-80 rounded-full px-6 py-2 transition-all duration-300"
-              @click="galleryOpen = !galleryOpen"
-            >
-              {{ galleryOpen ? 'Fechar' : 'Ver mais...' }}
-            </button>
-          </Transition>
 
         </div>
       </div>
