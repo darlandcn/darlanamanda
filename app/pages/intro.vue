@@ -12,7 +12,7 @@
         :src="media.img('couple2.jpeg')"
         alt=""
         aria-hidden="true"
-        style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: 22% top; transform: translateY(-19%); filter: brightness(0.5) saturate(0.7); -webkit-mask-image: linear-gradient(to bottom, black 0%, black 55%, rgba(0,0,0,0.5) 75%, transparent 93%); mask-image: linear-gradient(to bottom, black 0%, black 55%, rgba(0,0,0,0.5) 75%, transparent 93%);"
+        style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: 10% top; transform: translateY(-19%); filter: brightness(0.5) saturate(0.7); -webkit-mask-image: linear-gradient(to bottom, black 0%, black 55%, rgba(0,0,0,0.5) 75%, transparent 93%); mask-image: linear-gradient(to bottom, black 0%, black 55%, rgba(0,0,0,0.5) 75%, transparent 93%);"
       />
     </div>
 

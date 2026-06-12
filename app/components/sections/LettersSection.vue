@@ -2,8 +2,8 @@
   <section
     id="section-letters"
     data-section="letters"
-    class="section-base min-h-screen relative flex flex-col"
-    style="background: transparent;"
+    class="section-base relative flex flex-col justify-center overflow-hidden"
+    style="min-height: 100dvh; background: transparent;"
   >
     <ParticlesBackground id="letters-particles" />
 
@@ -18,7 +18,7 @@
     />
 
     <!-- Label + Título -->
-    <div ref="headerRef" class="relative z-10 w-full max-w-2xl mx-auto px-6 pt-[7.5rem] space-y-3 text-center">
+    <div ref="headerRef" class="relative z-10 w-full max-w-2xl mx-auto px-6 space-y-3 text-center">
       <p class="text-xs uppercase tracking-[0.3em] text-ink-muted font-semibold text-center">pra finalizar</p>
       <h2 class="font-serif text-4xl md:text-5xl text-ink leading-none text-center">
         Uma cartinha<br />
@@ -26,13 +26,13 @@
       </h2>
     </div>
 
-    <div class="relative z-10 w-full max-w-2xl mx-auto px-6 flex-1 flex flex-col items-center justify-center pb-24">
+    <div class="relative z-10 w-full max-w-2xl mx-auto px-6 flex-1 flex flex-col items-center justify-center">
 
       <!-- Envelope -->
       <div
         ref="envelopeRef"
         class="relative cursor-pointer select-none"
-        style="width: 320px; height: 220px;"
+        style="width: min(85vw, 320px); aspect-ratio: 320 / 220;"
         @click="toggleEnvelope"
       >
         <!-- Corpo do envelope — papel creme -->
@@ -88,7 +88,7 @@
       </div>
 
       <!-- Dica de interação -->
-      <p class="mt-10 text-xs uppercase tracking-[0.25em] text-ink-muted/60 transition-opacity duration-500">
+      <p class="mt-6 text-xs uppercase tracking-[0.25em] text-ink-muted/60 transition-opacity duration-500">
         {{ isOpen ? '' : 'clique para abrir' }}
       </p>
 

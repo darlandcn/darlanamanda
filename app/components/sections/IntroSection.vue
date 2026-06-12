@@ -2,9 +2,14 @@
   <section
     id="section-intro"
     data-section="intro"
-    class="section-base min-h-screen relative flex flex-col"
-    style="background: transparent;"
-    :class="{ 'items-start': galleryOpen }"
+    class="section-base relative flex flex-col"
+    :style="{
+      minHeight: '100dvh',
+      justifyContent: 'center',
+      alignItems: galleryOpen ? 'flex-start' : 'center',
+      overflow: galleryOpen ? 'auto' : 'hidden',
+      background: 'transparent'
+    }"
   >
     <ParticlesBackground id="intro-particles" />
 
@@ -23,17 +28,17 @@
     </div>
 
     <!-- Texto -->
-    <div class="relative z-10 w-full max-w-5xl mx-auto px-6 mt-16 text-left">
+    <div class="relative z-10 w-full max-w-5xl mx-auto px-6 mt-6 text-left">
       <p class="text-ink-light leading-relaxed">
         Pensei em irmos do início, você se lembra como tudo começou?
       </p>
     </div>
 
     <!-- Conteúdo principal — centralizado na seção -->
-    <div class="relative z-10 w-full max-w-5xl mx-auto px-6 flex-1 flex flex-col justify-center pb-24">
+    <div class="relative z-10 w-full max-w-5xl mx-auto px-6 flex-1 flex flex-col justify-center py-8">
 
       <!-- Conteúdo principal -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
 
         <!-- Botão revelar -->
         <div class="space-y-6">
@@ -54,7 +59,8 @@
           <Transition name="reveal">
             <div
               v-if="cardVisible"
-              class="flip-card w-80 h-[400px] flex-shrink-0 cursor-pointer"
+              class="flip-card flex-shrink-0 cursor-pointer"
+              style="width: min(80vw, 320px); height: min(80vw, 320px); max-height: 42vh;"
               @click="photoFlipped = !photoFlipped"
             >
               <div class="flip-card-inner" :class="{ flipped: photoFlipped }">

@@ -100,7 +100,7 @@
             width: 80px;
             height: 1px;
             background: #475569;
-            margin: 0 auto 24px;
+            margin: 0 auto 16px;
           "
         />
 
@@ -115,7 +115,7 @@
             color: #64748B;
             text-align: center;
             text-transform: uppercase;
-            margin-bottom: 32px;
+            margin-bottom: 22px;
           "
         >
           Digite a data onde tudo começou
