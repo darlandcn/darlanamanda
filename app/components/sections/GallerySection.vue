@@ -38,6 +38,7 @@
             v-if="item.src"
             :src="item.src"
             :alt="item.label"
+            loading="lazy"
             class="w-full h-auto block"
           />
           <div

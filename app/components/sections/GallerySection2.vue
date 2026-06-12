@@ -48,7 +48,7 @@
               :src="vid('momento.mp4')"
               class="w-full h-auto block"
               controls
-              preload="metadata"
+              preload="none"
             />
             <div class="relative flex items-center justify-center" style="height: 64px;">
               <span style="font-family: 'Inter', sans-serif; font-size: 0.65rem; font-weight: 300; letter-spacing: 0.15em; text-transform: uppercase; color: #0A0F1A;">o pedido</span>
@@ -58,19 +58,19 @@
           <!-- Grade de fotos: cada uma com seu polaroid -->
           <div class="grid grid-cols-2 gap-4">
             <div class="polaroid flex flex-col">
-              <img :src="img('ped1.jpeg')" alt="" class="w-full h-auto block" />
+              <img loading="lazy" :src="img('ped1.jpeg')" alt="" class="w-full h-auto block" />
               <div class="flex items-center justify-center" style="height: 48px;" />
             </div>
             <div class="polaroid flex flex-col">
-              <img :src="img('ped2.jpeg')" alt="" class="w-full h-auto block" />
+              <img loading="lazy" :src="img('ped2.jpeg')" alt="" class="w-full h-auto block" />
               <div class="flex items-center justify-center" style="height: 48px;" />
             </div>
             <div class="polaroid flex flex-col">
-              <img :src="img('ped3.jpeg')" alt="" class="w-full h-auto block" />
+              <img loading="lazy" :src="img('ped3.jpeg')" alt="" class="w-full h-auto block" />
               <div class="flex items-center justify-center" style="height: 48px;" />
             </div>
             <div class="polaroid flex flex-col">
-              <img :src="img('ped4.jpeg')" alt="" class="w-full h-auto block" />
+              <img loading="lazy" :src="img('ped4.jpeg')" alt="" class="w-full h-auto block" />
               <div class="flex items-center justify-center" style="height: 48px;" />
             </div>
           </div>

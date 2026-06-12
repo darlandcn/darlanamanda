@@ -65,29 +65,31 @@
         height: 100%;
       "
       @touchstart="onTouchStart"
+      @touchmove="onTouchMove"
       @touchend="onTouchEnd"
     >
-      <div
-        v-for="(section, i) in sections"
-        :key="section.name"
-        :ref="el => { if (el) slideRefs[i] = el as HTMLElement }"
-        :style="{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          overflowY: 'auto',
-          transform: `translateX(${(i - currentIndex) * 100}%)`,
-          transition: 'none',
-        }"
-      >
-        <component
-          :is="section.component"
-          v-bind="section.name === 'hero' ? { showSwipeHint: showSwipeHint } : {}"
-          @next="goNext"
-        />
-      </div>
+      <template v-for="(section, i) in sections" :key="section.name">
+        <div
+          v-if="Math.abs(i - currentIndex) <= 1"
+          :ref="el => { if (el) slideRefs[i] = el as HTMLElement }"
+          :style="{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            overflowY: 'auto',
+            transform: `translateX(${(i - currentIndex) * 100}%)`,
+            transition: 'none',
+          }"
+        >
+          <component
+            :is="section.component"
+            v-bind="section.name === 'hero' ? { showSwipeHint: showSwipeHint } : {}"
+            @next="goNext"
+          />
+        </div>
+      </template>
     </div>
 
   </div>
@@ -177,17 +179,36 @@ async function goPrev() {
 
 let touchStartX = 0
 let touchStartY = 0
+let touchStartTime = 0
+let lockedDirection: 'horizontal' | 'vertical' | null = null
 
 function onTouchStart(e: TouchEvent) {
   touchStartX = e.touches[0].clientX
   touchStartY = e.touches[0].clientY
+  touchStartTime = Date.now()
+  lockedDirection = null
+}
+
+function onTouchMove(e: TouchEvent) {
+  if (lockedDirection) return
+
+  const dx = Math.abs(e.touches[0].clientX - touchStartX)
+  const dy = Math.abs(e.touches[0].clientY - touchStartY)
+
+  if (dx > 10 || dy > 10) {
+    lockedDirection = dx > dy ? 'horizontal' : 'vertical'
+  }
 }
 
 function onTouchEnd(e: TouchEvent) {
-  const deltaX = touchStartX - e.changedTouches[0].clientX
-  const deltaY = Math.abs(touchStartY - e.changedTouches[0].clientY)
+  if (lockedDirection !== 'horizontal') return
 
-  if (Math.abs(deltaX) > 50 && Math.abs(deltaX) > deltaY) {
+  const deltaX = touchStartX - e.changedTouches[0].clientX
+  const elapsed = Date.now() - touchStartTime
+
+  const isValidSwipe = Math.abs(deltaX) > 60 || (Math.abs(deltaX) > 30 && elapsed < 300)
+
+  if (isValidSwipe) {
     if (deltaX > 0) goNext()
     else goPrev()
   }

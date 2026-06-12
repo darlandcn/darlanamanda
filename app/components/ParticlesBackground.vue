@@ -23,7 +23,7 @@ const particlesOptions = {
     color: { value: 'transparent' },
   },
   particles: {
-    number: { value: 80 },
+    number: { value: 40 },
     color: {
       value: ['#FFFFFF', '#F8FAFC', '#E2E8F0', '#CBD5E1'],
     },

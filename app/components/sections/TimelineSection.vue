@@ -56,6 +56,7 @@
                 <img
                   :src="event.image"
                   :alt="event.title"
+                  loading="lazy"
                   class="w-full rounded-sm cursor-pointer hover:opacity-90 transition-opacity duration-300"
                 />
               </button>
@@ -81,6 +82,7 @@
                 <img
                   :src="event.image"
                   :alt="event.title"
+                  loading="lazy"
                   class="w-full rounded-sm cursor-pointer hover:opacity-90 transition-opacity duration-300"
                 />
               </button>
@@ -112,6 +114,7 @@
 
           <img
             :src="lightboxSrc"
+            loading="lazy"
             class="relative z-10 max-w-full max-h-[90vh] rounded-xl object-contain"
           />
         </div>

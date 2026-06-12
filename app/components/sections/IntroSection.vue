@@ -64,6 +64,7 @@
                   <img
                     :src="img('comecoimagem.jpeg')"
                     alt="Foto especial"
+                    loading="lazy"
                     class="w-full flex-1 object-cover rounded-sm min-h-0"
                   />
                   <div class="flex items-center justify-center" style="height: 64px;">
@@ -125,6 +126,7 @@
                 <img
                   v-if="item.type === 'image'"
                   :src="item.src"
+                  loading="lazy"
                   class="w-full h-auto block transition-transform duration-500 group-hover:scale-105"
                 />
 
@@ -133,7 +135,7 @@
                     :src="item.src"
                     class="w-full h-auto block"
                     muted
-                    preload="auto"
+                    preload="none"
                     @canplay="(e) => { const v = e.target as HTMLVideoElement; v.currentTime = 1 }"
                   />
                   <div class="absolute inset-0 flex items-center justify-center bg-ink/20 group-hover:bg-ink/10 transition-colors">
@@ -173,6 +175,7 @@
           <img
             v-if="lightboxItem.type === 'image'"
             :src="lightboxItem.src"
+            loading="lazy"
             class="relative z-10 max-w-full max-h-[90vh] rounded-xl object-contain shadow-none"
           />
           <video
