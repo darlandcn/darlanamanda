@@ -7,8 +7,11 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
   app: {
     head: {
+      title: 'Nossa História',
+      htmlAttrs: { lang: 'pt-BR' },
       meta: [
         { name: 'viewport', content: 'width=device-width, initial-scale=1, viewport-fit=cover' },
+        { name: 'description', content: 'Uma viagem por tudo o que vivemos até aqui.' },
       ],
       link: [
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },

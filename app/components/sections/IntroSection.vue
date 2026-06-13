@@ -1,5 +1,6 @@
 <template>
   <section
+    ref="sectionRef"
     id="section-intro"
     data-section="intro"
     class="section-base relative flex flex-col"
@@ -92,12 +93,13 @@
                   <div class="relative z-10 h-full px-5 py-4 flex flex-col">
                     <p class="font-caveat text-[#111827] text-[19px] leading-[28px] whitespace-pre-line">{{ letterText }}</p>
                     <button
+                      v-if="!galleryOpen"
                       type="button"
                       class="mt-2 self-end text-xs uppercase tracking-[0.25em] hover:opacity-60 transition-all duration-300"
                       style="color: #0A0F1A;"
-                      @click.stop="galleryOpen = !galleryOpen"
+                      @click.stop="openGallery"
                     >
-                      {{ galleryOpen ? 'Fechar' : 'Ver mais...' }}
+                      Ver mais...
                     </button>
                   </div>
                 </div>
@@ -113,7 +115,7 @@
       <!-- Galeria inline -->
       <Transition name="gallery-expand">
         <div v-if="galleryOpen" class="mt-16 pt-12 border-t border-[rgba(226,232,240,0.10)]">
-          <div class="mb-8 space-y-1">
+          <div ref="galleryTextRef" class="mb-8 space-y-1">
             <p class="font-sans text-ink-light leading-relaxed">
               Foram ótimos momentos nessa conferência, e muitos outros depois dela, cada um deles vividos intensamente, daquele nosso jeitinho.
             </p>
@@ -197,7 +199,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, nextTick, onMounted, onUnmounted } from 'vue'
 import { MasonryWall } from '@yeger/vue-masonry-wall'
 import { useGsapAnimations } from '~/composables/useGsapAnimations'
 import { useMedia } from '~/composables/useMedia'
@@ -210,12 +212,22 @@ interface GalleryItem {
   src: string
 }
 
-const textColRef   = ref<HTMLElement | null>(null)
-const imageColRef  = ref<HTMLElement | null>(null)
-const photoFlipped = ref(false)
-const cardVisible  = ref(false)
-const galleryOpen  = ref(false)
-const lightboxItem = ref<GalleryItem | null>(null)
+const sectionRef    = ref<HTMLElement | null>(null)
+const textColRef    = ref<HTMLElement | null>(null)
+const imageColRef   = ref<HTMLElement | null>(null)
+const galleryTextRef = ref<HTMLElement | null>(null)
+const photoFlipped  = ref(false)
+const cardVisible   = ref(false)
+const galleryOpen   = ref(false)
+const lightboxItem  = ref<GalleryItem | null>(null)
+
+async function openGallery() {
+  galleryOpen.value = true
+  await nextTick()
+  if (sectionRef.value && galleryTextRef.value) {
+    sectionRef.value.scrollTo({ top: galleryTextRef.value.offsetTop - 24, behavior: 'smooth' })
+  }
+}
 
 const letterText = `Dia 03/09/2022.
 No primeiro dia de uma conferência internacional…
