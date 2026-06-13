@@ -165,11 +165,24 @@ async function showPhrase(text: string, inDuration: number, hold: number, outDur
 }
 
 let touchStartX = 0
-let touchStartHandler: ((e: TouchEvent) => void) | null = null
-let touchEndHandler: ((e: TouchEvent) => void) | null = null
+
+function onTouchStart(e: TouchEvent) {
+  touchStartX = e.touches[0].clientX
+}
+
+function onTouchEnd(e: TouchEvent) {
+  const deltaX = e.changedTouches[0].clientX - touchStartX
+  if (deltaX > 50) navigate()
+}
 
 onMounted(async () => {
-  if (!sessionStorage.getItem('granted')) {
+  let granted = false
+  try {
+    granted = sessionStorage.getItem('granted') === 'true'
+  } catch (e) {
+    granted = true // storage indisponível (Safari privado) — não bloqueia
+  }
+  if (!granted) {
     router.push('/')
     return
   }
@@ -210,17 +223,8 @@ onMounted(async () => {
   await gsap.to(scrollEl.value, { opacity: 1, duration: 1, ease: 'power2.out' })
   isReady.value = true
 
-  touchStartHandler = (e: TouchEvent) => {
-    touchStartX = e.touches[0].clientX
-  }
-
-  touchEndHandler = (e: TouchEvent) => {
-    const deltaX = e.changedTouches[0].clientX - touchStartX
-    if (deltaX > 50) navigate()
-  }
-
-  window.addEventListener('touchstart', touchStartHandler)
-  window.addEventListener('touchend', touchEndHandler)
+  window.addEventListener('touchstart', onTouchStart)
+  window.addEventListener('touchend', onTouchEnd)
 })
 
 function onScreenClick() {
@@ -228,14 +232,14 @@ function onScreenClick() {
 }
 
 async function navigate() {
-  if (touchStartHandler) window.removeEventListener('touchstart', touchStartHandler)
-  if (touchEndHandler)   window.removeEventListener('touchend', touchEndHandler)
+  window.removeEventListener('touchstart', onTouchStart)
+  window.removeEventListener('touchend', onTouchEnd)
   gsap.to(scrollEl.value, { opacity: 0, duration: 0.4 })
   await router.push('/nossa-historia')
 }
 
 onUnmounted(() => {
-  if (touchStartHandler) window.removeEventListener('touchstart', touchStartHandler)
-  if (touchEndHandler)   window.removeEventListener('touchend', touchEndHandler)
+  window.removeEventListener('touchstart', onTouchStart)
+  window.removeEventListener('touchend', onTouchEnd)
 })
 </script>

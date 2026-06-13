@@ -32,7 +32,7 @@
       <div
         ref="envelopeRef"
         class="relative cursor-pointer select-none"
-        style="width: min(85vw, 320px); aspect-ratio: 320 / 220;"
+        style="width: min(85vw, 320px); aspect-ratio: 320 / 220; perspective: 1000px;"
         @click="toggleEnvelope"
       >
         <!-- Corpo do envelope — papel creme -->
@@ -55,7 +55,7 @@
         <div
           ref="flapRef"
           class="absolute inset-x-0 top-10 origin-top"
-          style="transform-style: preserve-3d;"
+          style="transform-style: preserve-3d; backface-visibility: hidden; -webkit-backface-visibility: hidden; z-index: 10;"
         >
           <svg
             viewBox="0 0 320 140"
@@ -167,12 +167,19 @@ function toggleEnvelope() {
 function openEnvelope() {
   const tl = gsap.timeline()
   tl.to(sealRef.value, { opacity: 0, scale: 0.8, duration: 0.25, ease: 'power2.in' })
-  tl.to(flapRef.value, { rotateX: -180, duration: 0.55, ease: 'power2.inOut', onComplete: () => { isOpen.value = true } }, '-=0.1')
+  tl.set(flapRef.value, { transformOrigin: 'top center' })
+  tl.to(flapRef.value, {
+    rotateX: -180,
+    duration: 0.6,
+    ease: 'power2.inOut',
+    onComplete: () => { isOpen.value = true }
+  }, '-=0.1')
 }
 
 function closeEnvelope() {
   isOpen.value = false
   const tl = gsap.timeline()
+  tl.set(flapRef.value, { transformOrigin: 'top center' })
   tl.to(flapRef.value, { rotateX: 0, duration: 0.5, ease: 'power2.inOut' })
   tl.to(sealRef.value, { opacity: 1, scale: 1, duration: 0.25, ease: 'power2.out' })
 }

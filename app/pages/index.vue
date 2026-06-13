@@ -254,7 +254,8 @@ const dateEl = ref<HTMLInputElement | null>(null)
 async function handleEnter() {
   if (isEntering.value) return
 
-  const date = dateEl.value!.value
+  if (!dateEl.value) return
+  const date = dateEl.value.value
   if (!validate(date)) return
 
   isEntering.value = true
@@ -269,7 +270,11 @@ async function handleEnter() {
     ease: 'power2.in',
   })
 
-  sessionStorage.setItem('granted', 'true')
+  try {
+    sessionStorage.setItem('granted', 'true')
+  } catch (e) {
+    // Safari modo privado — segue sem bloquear
+  }
   await router.push('/intro')
 }
 

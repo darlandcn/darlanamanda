@@ -218,10 +218,15 @@ function onTouchEnd(e: TouchEvent) {
 }
 
 onMounted(() => {
-  if (!sessionStorage.getItem('granted')) {
+  let granted = false
+  try {
+    granted = sessionStorage.getItem('granted') === 'true'
+  } catch (e) {
+    granted = true // storage indisponível (Safari privado) — não bloqueia
+  }
+  if (!granted) {
     router.push('/')
   }
-
 })
 </script>
 

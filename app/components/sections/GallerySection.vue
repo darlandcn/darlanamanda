@@ -147,7 +147,7 @@ const { img } = useMedia()
 
 const galleryItems = [
   { id: 1, src: img('memo1.jpeg'),   label: 'nosso primeiro beijo',              date: '02 fev 2026' },
-  { id: 2, src: 'https://pupkcykrdxwgwmynjysb.supabase.co/storage/v1/object/public/media/images/memo2.jpeg', label: 'a benção dos seus pais', date: '15 fev 2026' },
+  { id: 2, src: img('memo2.jpeg'), label: 'a benção dos seus pais', date: '15 fev 2026' },
   { id: 3, src: img('memo3.jpeg'),  label: 'primeiro café em casa com meus pais', date: '17 fev 2026' },
   { id: 4, src: img('memo4.jpeg'),  label: 'primeiro não encontro',              date: '22 fev 2026' },
   { id: 5, src: img('memo5.jpeg'),  label: 'sua primeira vez lá em casa',        date: '08 mar 2026' },
