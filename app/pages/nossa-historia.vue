@@ -63,6 +63,7 @@
         position: relative;
         width: 100%;
         height: 100%;
+        touch-action: pan-y;
       "
       @touchstart="onTouchStart"
       @touchmove="onTouchMove"
@@ -148,15 +149,17 @@ async function goNext() {
   const current = slideRefs.value[currentIndex.value]
   const next    = slideRefs.value[currentIndex.value + 1]
 
-  gsap.set(next, { x: '100%', opacity: 1 })
+  try {
+    gsap.set(next, { x: '100%', opacity: 1 })
 
-  await Promise.all([
-    gsap.to(current, { x: '-100%', duration: 0.6, ease: 'power2.inOut' }),
-    gsap.fromTo(next, { x: '100%' }, { x: '0%', duration: 0.6, ease: 'power2.inOut' }),
-  ])
-
-  currentIndex.value++
-  isAnimating.value = false
+    await Promise.all([
+      gsap.to(current, { x: '-100%', duration: 0.6, ease: 'power2.inOut' }),
+      gsap.fromTo(next, { x: '100%' }, { x: '0%', duration: 0.6, ease: 'power2.inOut' }),
+    ])
+  } finally {
+    currentIndex.value++
+    isAnimating.value = false
+  }
 }
 
 async function goPrev() {
@@ -190,13 +193,18 @@ function onTouchStart(e: TouchEvent) {
 }
 
 function onTouchMove(e: TouchEvent) {
-  if (lockedDirection) return
+  if (lockedDirection === 'horizontal') {
+    e.preventDefault()
+    return
+  }
+  if (lockedDirection === 'vertical') return
 
   const dx = Math.abs(e.touches[0].clientX - touchStartX)
   const dy = Math.abs(e.touches[0].clientY - touchStartY)
 
   if (dx > 10 || dy > 10) {
     lockedDirection = dx > dy ? 'horizontal' : 'vertical'
+    if (lockedDirection === 'horizontal') e.preventDefault()
   }
 }
 

@@ -25,6 +25,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       supabaseUrl: '',
+      supabaseProjectUrl: '',
+      supabaseAnonKey: '',
     },
   },
   vite: {
