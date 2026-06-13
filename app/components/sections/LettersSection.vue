@@ -102,20 +102,34 @@
           "/>
 
           <!-- Papel da carta -->
-          <div style="background: #F8FAFC; border-radius: 2px; box-shadow: 0 24px 64px rgba(0,0,0,0.6); overflow: hidden; width: 100%; max-width: 360px; position: relative;" @click.stop>
+          <div style="
+            position: relative;
+            z-index: 1;
+            background: #F8FAFC;
+            border-radius: 2px;
+            box-shadow: 0 24px 64px rgba(0,0,0,0.6);
+            width: 100%;
+            max-width: 340px;
+            max-height: min(68dvh, 440px);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+          " @click.stop>
 
-            <!-- Linhas pautadas -->
-            <div style="position: absolute; inset: 0; pointer-events: none; overflow: hidden;">
-              <div
-                v-for="n in 13"
-                :key="n"
-                style="position: absolute; width: 100%; height: 1px; background: rgba(0,0,0,0.12);"
-                :style="{ top: (16 + n * 28) + 'px' }"
-              />
-            </div>
-
-            <!-- Texto -->
-            <div style="position: relative; z-index: 10; padding: 16px 20px;">
+            <!-- Área scrollável com linhas pautadas -->
+            <div style="
+              flex: 1;
+              overflow-y: auto;
+              overflow-x: hidden;
+              -webkit-overflow-scrolling: touch;
+              padding: 20px 20px 16px;
+              background-image: repeating-linear-gradient(
+                transparent, transparent 27px,
+                rgba(0,0,0,0.12) 27px, rgba(0,0,0,0.12) 28px
+              );
+              background-size: 100% 28px;
+              background-position: 0 21px;
+            ">
               <p style="
                 font-family: 'Caveat', cursive;
                 font-size: 19px;
@@ -129,8 +143,10 @@
             <button
               type="button"
               style="
+                flex-shrink: 0;
                 display: block; width: 100%; padding: 14px;
                 background: transparent; border: none;
+                border-top: 1px solid rgba(0,0,0,0.08);
                 font-family: 'Inter', sans-serif; font-size: 0.65rem;
                 font-weight: 400; letter-spacing: 0.2em;
                 text-transform: uppercase; color: #111827;
