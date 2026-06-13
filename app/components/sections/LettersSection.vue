@@ -32,11 +32,12 @@
       <div
         ref="envelopeRef"
         class="relative cursor-pointer select-none"
-        style="width: min(85vw, 320px); aspect-ratio: 320 / 220; perspective: 1000px;"
+        style="width: min(85vw, 320px); aspect-ratio: 320 / 220; perspective: 1000px; perspective-origin: 50% 0%; touch-action: manipulation;"
         role="button"
         tabindex="0"
         @click="toggleEnvelope"
-        @keydown.enter.space.prevent="toggleEnvelope"
+        @keydown.enter="toggleEnvelope"
+        @keydown.space.prevent="toggleEnvelope"
       >
         <!-- Corpo do envelope — papel creme -->
         <svg
@@ -58,7 +59,7 @@
         <div
           ref="flapRef"
           class="absolute inset-x-0 top-10"
-          style="transform-style: preserve-3d; z-index: 10;"
+          style="transform-style: preserve-3d; backface-visibility: hidden; -webkit-backface-visibility: hidden; will-change: transform; z-index: 10;"
         >
           <svg
             viewBox="0 0 320 140"
@@ -173,16 +174,20 @@ function openEnvelope() {
     return
   }
 
-  gsap.set(flapRef.value, { transformOrigin: '50% 0%', rotateX: 0 })
+  gsap.set(flapRef.value, { transformOrigin: '50% 0%', rotateX: 0, force3D: true })
 
-  const tl = gsap.timeline()
+  const tl = gsap.timeline({
+    onComplete: () => { isOpen.value = true },
+  })
   tl.to(sealRef.value, { opacity: 0, scale: 0.8, duration: 0.25, ease: 'power2.in' })
   tl.to(flapRef.value, {
     rotateX: -175,
     duration: 0.7,
     ease: 'power2.inOut',
-    onComplete: () => { isOpen.value = true },
+    force3D: true,
   }, '+=0.05')
+
+  setTimeout(() => { if (!isOpen.value) isOpen.value = true }, 1200)
 }
 
 function closeEnvelope() {
