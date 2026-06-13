@@ -60,7 +60,7 @@
             <div
               v-if="cardVisible"
               class="flip-card flex-shrink-0 cursor-pointer"
-              style="width: min(80vw, 320px); height: min(80vw, 320px); max-height: 42vh;"
+              style="width: min(80vw, 320px); height: min(125vw, 400px); max-height: 60vh;"
               @click="photoFlipped = !photoFlipped"
             >
               <div class="flip-card-inner" :class="{ flipped: photoFlipped }">

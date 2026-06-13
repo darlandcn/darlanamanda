@@ -2,7 +2,7 @@
   <section
     id="section-letters"
     data-section="letters"
-    class="section-base relative flex flex-col justify-center overflow-hidden"
+    class="section-base relative flex flex-col justify-center overflow-hidden pb-12"
     style="min-height: 100dvh; background: transparent;"
   >
     <ParticlesBackground id="letters-particles" />
@@ -26,7 +26,7 @@
       </h2>
     </div>
 
-    <div class="relative z-10 w-full max-w-2xl mx-auto px-6 flex-1 flex flex-col items-center justify-center">
+    <div class="relative z-10 w-full max-w-2xl mx-auto px-6 mt-12 flex flex-col items-center">
 
       <!-- Envelope -->
       <div
