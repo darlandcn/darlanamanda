@@ -33,7 +33,10 @@
         ref="envelopeRef"
         class="relative cursor-pointer select-none"
         style="width: min(85vw, 320px); aspect-ratio: 320 / 220; perspective: 1000px;"
+        role="button"
+        tabindex="0"
         @click="toggleEnvelope"
+        @keydown.enter.space.prevent="toggleEnvelope"
       >
         <!-- Corpo do envelope — papel creme -->
         <svg
@@ -165,13 +168,15 @@ function toggleEnvelope() {
 }
 
 function openEnvelope() {
-  // transformOrigin via GSAP para garantir consistência cross-browser
+  if (!flapRef.value || !sealRef.value) {
+    isOpen.value = true
+    return
+  }
+
   gsap.set(flapRef.value, { transformOrigin: '50% 0%', rotateX: 0 })
 
   const tl = gsap.timeline()
-  // Lacre some primeiro
   tl.to(sealRef.value, { opacity: 0, scale: 0.8, duration: 0.25, ease: 'power2.in' })
-  // Aba gira pra cima em torno do topo (hinge = borda superior)
   tl.to(flapRef.value, {
     rotateX: -175,
     duration: 0.7,
