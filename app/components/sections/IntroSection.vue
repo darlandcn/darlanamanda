@@ -1,6 +1,5 @@
 <template>
   <section
-    ref="sectionRef"
     id="section-intro"
     data-section="intro"
     class="section-base relative flex flex-col"
@@ -212,7 +211,6 @@ interface GalleryItem {
   src: string
 }
 
-const sectionRef    = ref<HTMLElement | null>(null)
 const textColRef    = ref<HTMLElement | null>(null)
 const imageColRef   = ref<HTMLElement | null>(null)
 const galleryTextRef = ref<HTMLElement | null>(null)
@@ -224,9 +222,7 @@ const lightboxItem  = ref<GalleryItem | null>(null)
 async function openGallery() {
   galleryOpen.value = true
   await nextTick()
-  if (sectionRef.value && galleryTextRef.value) {
-    sectionRef.value.scrollTo({ top: galleryTextRef.value.offsetTop - 24, behavior: 'smooth' })
-  }
+  galleryTextRef.value?.scrollIntoView({ behavior: 'smooth', block: 'start' })
 }
 
 const letterText = `Dia 03/09/2022.

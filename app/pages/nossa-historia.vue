@@ -193,18 +193,13 @@ function onTouchStart(e: TouchEvent) {
 }
 
 function onTouchMove(e: TouchEvent) {
-  if (lockedDirection === 'horizontal') {
-    e.preventDefault()
-    return
-  }
-  if (lockedDirection === 'vertical') return
+  if (lockedDirection) return
 
   const dx = Math.abs(e.touches[0].clientX - touchStartX)
   const dy = Math.abs(e.touches[0].clientY - touchStartY)
 
   if (dx > 10 || dy > 10) {
     lockedDirection = dx > dy ? 'horizontal' : 'vertical'
-    if (lockedDirection === 'horizontal') e.preventDefault()
   }
 }
 
