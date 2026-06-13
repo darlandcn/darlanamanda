@@ -159,12 +159,15 @@ const isOpen      = ref(false)
 
 const letterText = `Meu amor,
 
-Escrever essa carta não é fácil — não porque as palavras faltam, mas porque são tantas que não cabem em nenhuma folha. Desde o dia em que você entrou na minha vida, tudo ficou mais colorido, mais leve, mais cheio de sentido.
-
-Cada momento ao seu lado é um presente que guardo com cuidado no coração. Você me ensinou que o amor não é perfeito — é verdadeiro. E o nosso é os dois.
+Estou escrevendo essa carta como uma tentativa de expressar meu amor e minha alegria em ter você.
+Sou muito grato ao Senhor porque realmente encontrei em você tudo o que eu sempre pedi a Ele em oração: alguém que fosse a minha paz, meu descanso e que me aproximasse Dele. Mas Ele foi muito além disso; trouxe você, que é amável, companheira, espontânea e cheia de amor.
+Amanda, você torna os meus dias mais leves e me incentiva a buscar a melhor versão de mim mesmo todos os dias, e não só no nosso relacionamento, mas também na minha relação com a minha família, nos meus estudos e no meu trabalho. E não por mérito meu, mas por você ser quem você é.
+Enquanto eu fazia esta pequena página, vinham à minha memória todos os momentos que nos trouxeram até o dia de hoje, e percebi que ainda tenho muito a agradecer ao Senhor por ter me dado você. Durante o período em que ficamos afastados, eu cheguei a dizer que "não enxergava ninguém ocupando o seu lugar", e hoje tenho convicção de que essa frase é a mais pura verdade.
+Fico muito feliz por todas as fases que passamos, pelo que estamos vivendo hoje e ansioso pelo que está por vir. De fato, tinha que ser você e vai ser você pra sempre.
 
 Com todo o meu amor,
-Para sempre seu.`
+
+Darlan, vulgo "seu momozi"`
 
 function openLetter() {
   if (isOpen.value) return
