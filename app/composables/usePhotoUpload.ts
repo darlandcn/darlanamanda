@@ -21,7 +21,7 @@ export function usePhotoUpload() {
       const fileName = `momentos/momento-${Date.now()}.${ext}`
 
       const res = await fetch(
-        `${projectUrl}/storage/v1/object/${fileName}`,
+        `${projectUrl}/storage/v1/object/media/${fileName}`,
         {
           method: 'POST',
           headers: {

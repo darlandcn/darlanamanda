@@ -54,8 +54,8 @@
         <!-- Aba superior animada -->
         <div
           ref="flapRef"
-          class="absolute inset-x-0 top-10 origin-top"
-          style="transform-style: preserve-3d; backface-visibility: hidden; -webkit-backface-visibility: hidden; z-index: 10;"
+          class="absolute inset-x-0 top-10"
+          style="transform-style: preserve-3d; z-index: 10;"
         >
           <svg
             viewBox="0 0 320 140"
@@ -72,7 +72,7 @@
           ref="sealRef"
           class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center
                  w-9 h-9 rounded-full border border-[#0A0F1A] bg-[#F8FAFC]"
-          style="top: 43%; box-shadow: 0 0 0 1px #0A0F1A;"
+          style="top: 43%; box-shadow: 0 0 0 1px #0A0F1A; z-index: 20;"
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="color: #0A0F1A;">
             <path
@@ -165,26 +165,32 @@ function toggleEnvelope() {
 }
 
 function openEnvelope() {
+  // transformOrigin via GSAP para garantir consistência cross-browser
+  gsap.set(flapRef.value, { transformOrigin: '50% 0%', rotateX: 0 })
+
   const tl = gsap.timeline()
+  // Lacre some primeiro
   tl.to(sealRef.value, { opacity: 0, scale: 0.8, duration: 0.25, ease: 'power2.in' })
-  tl.set(flapRef.value, { transformOrigin: 'top center' })
+  // Aba gira pra cima em torno do topo (hinge = borda superior)
   tl.to(flapRef.value, {
-    rotateX: -180,
-    duration: 0.6,
+    rotateX: -175,
+    duration: 0.7,
     ease: 'power2.inOut',
-    onComplete: () => { isOpen.value = true }
-  }, '-=0.1')
+    onComplete: () => { isOpen.value = true },
+  }, '+=0.05')
 }
 
 function closeEnvelope() {
   isOpen.value = false
+  gsap.set(flapRef.value, { transformOrigin: '50% 0%' })
+
   const tl = gsap.timeline()
-  tl.set(flapRef.value, { transformOrigin: 'top center' })
   tl.to(flapRef.value, { rotateX: 0, duration: 0.5, ease: 'power2.inOut' })
   tl.to(sealRef.value, { opacity: 1, scale: 1, duration: 0.25, ease: 'power2.out' })
 }
 
 onMounted(() => {
+  gsap.set(flapRef.value, { transformOrigin: '50% 0%', rotateX: 0 })
   fadeInUp(headerRef.value)
   scaleIn(envelopeRef.value)
 })

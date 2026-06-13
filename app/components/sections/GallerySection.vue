@@ -63,8 +63,39 @@
             @change="onPhotoSelected"
           />
 
-          <div v-if="photoUrl">
+          <div v-if="photoUrl" style="position: relative;">
             <img :src="photoUrl" alt="nosso primeiro dia dos namorados" style="width: 100%; display: block;" />
+            <button
+              type="button"
+              :disabled="uploading"
+              @click="retakePhoto"
+              style="
+                position: absolute;
+                bottom: 12px;
+                left: 12px;
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                background: rgba(8,8,8,0.7);
+                backdrop-filter: blur(8px);
+                border: 1px solid rgba(201,169,110,0.4);
+                border-radius: 100px;
+                padding: 8px 14px;
+                cursor: pointer;
+                color: #F0EBE0;
+              "
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M23 4v6h-6M1 20v-6h6" stroke="#C9A96E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" stroke="#C9A96E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span style="
+                font-family: 'Inter', sans-serif;
+                font-size: 0.65rem;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+              ">{{ uploading ? 'Salvando...' : 'Tirar outra' }}</span>
+            </button>
           </div>
 
           <button
@@ -139,6 +170,11 @@ async function onPhotoSelected(e: Event) {
   if (!file) return
   const url = await uploadPhoto(file)
   if (url) photoUrl.value = url
+}
+
+function retakePhoto() {
+  photoUrl.value = null
+  cameraInput.value?.click()
 }
 
 const { fadeInUp } = useGsapAnimations()

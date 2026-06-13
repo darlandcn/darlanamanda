@@ -33,22 +33,24 @@
         v-if="!cardVisible"
         type="button"
         class="mt-8 text-xs uppercase tracking-[0.25em] text-ink hover:opacity-80 rounded-full px-6 py-2 transition-all duration-300"
-        @click="cardVisible = true"
+        @click="reveal"
       >
         Revelar
       </button>
 
       <!-- Vídeo + fotos -->
       <Transition name="reveal">
-        <div v-if="cardVisible" class="w-full flex flex-col gap-10">
+        <div v-show="cardVisible" class="w-full flex flex-col gap-10">
 
           <!-- Polaroid: vídeo -->
           <div class="polaroid w-full flex flex-col">
             <video
-              :src="vid('momento.mp4')"
+              ref="videoRef"
+              src="https://pupkcykrdxwgwmynjysb.supabase.co/storage/v1/object/public/media/video/vpedido.mp4"
               class="w-full h-auto block"
               controls
-              preload="none"
+              playsinline
+              preload="auto"
             />
             <div class="relative flex items-center justify-center" style="height: 64px;">
               <span style="font-family: 'Inter', sans-serif; font-size: 0.65rem; font-weight: 300; letter-spacing: 0.15em; text-transform: uppercase; color: #0A0F1A;">o pedido</span>
@@ -91,11 +93,17 @@ import ParticlesBackground from '~/components/ParticlesBackground.vue'
 
 defineOptions({ name: 'GallerySection2' })
 
-const headerRef  = ref<HTMLElement | null>(null)
+const headerRef   = ref<HTMLElement | null>(null)
+const videoRef    = ref<HTMLVideoElement | null>(null)
 const cardVisible = ref(false)
 
 const { fadeInUp } = useGsapAnimations()
-const { img, vid } = useMedia()
+const { img } = useMedia()
+
+function reveal() {
+  cardVisible.value = true
+  videoRef.value?.play()
+}
 
 onMounted(() => {
   fadeInUp(headerRef.value)
