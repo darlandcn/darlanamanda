@@ -28,7 +28,7 @@
     </div>
 
     <!-- Contador -->
-    <div class="relative z-10 w-full max-w-lg mx-auto px-6">
+    <div ref="counterRef" class="relative z-10 w-full max-w-lg mx-auto px-6">
       <div style="
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -73,7 +73,7 @@
     </div>
 
     <!-- Texto abaixo do contador -->
-    <div class="relative z-10 w-full max-w-lg mx-auto px-6 mt-8 text-center">
+    <div ref="footerRef" class="relative z-10 w-full max-w-lg mx-auto px-6 mt-8 text-center">
       <p class="text-base md:text-lg text-ink-light leading-relaxed">
         E ainda temos um "sempre" pela frente.
       </p>
@@ -83,15 +83,18 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
-import { useGsapAnimations } from '~/composables/useGsapAnimations'
+import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
+import { gsap } from 'gsap'
 import ParticlesBackground from '~/components/ParticlesBackground.vue'
 
 defineOptions({ name: 'CounterSection' })
 
-const headerRef = ref<HTMLElement | null>(null)
+const props = defineProps<{ isActive?: boolean }>()
 
-const { fadeInUp } = useGsapAnimations()
+const headerRef  = ref<HTMLElement | null>(null)
+const counterRef = ref<HTMLElement | null>(null)
+const footerRef  = ref<HTMLElement | null>(null)
+const animPlayed = ref(false)
 
 const START_DATE = new Date(2026, 1, 2)
 const now = ref(new Date())
@@ -119,8 +122,15 @@ const units = computed(() => [
 ])
 
 onMounted(() => {
-  fadeInUp(headerRef.value)
+  gsap.set([counterRef.value, footerRef.value], { opacity: 0, y: 40 })
   timer = setInterval(() => { now.value = new Date() }, 1000)
+})
+
+watch(() => props.isActive, (active) => {
+  if (!active || animPlayed.value) return
+  animPlayed.value = true
+  const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
+  tl.fromTo([counterRef.value, footerRef.value], { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.7 })
 })
 
 onUnmounted(() => { clearInterval(timer) })

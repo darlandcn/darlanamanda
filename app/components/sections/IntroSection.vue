@@ -38,22 +38,10 @@
     <div class="relative z-10 w-full max-w-5xl mx-auto px-6 flex-1 flex flex-col justify-center py-8">
 
       <!-- Conteúdo principal -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-
-        <!-- Botão revelar -->
-        <div class="space-y-6">
-          <button
-            v-if="!cardVisible"
-            type="button"
-            class="block mx-auto text-xs uppercase tracking-[0.25em] text-ink hover:opacity-80 rounded-full px-6 py-2 transition-all duration-300"
-            @click="cardVisible = true"
-          >
-            Revelar
-          </button>
-        </div>
+      <div class="flex justify-center">
 
         <!-- Coluna de mídia -->
-        <div ref="imageColRef" data-gsap="fade-left" class="flex flex-col items-center md:items-start gap-4">
+        <div ref="imageColRef" data-gsap="fade-left" class="flex flex-col items-center gap-4">
 
           <!-- Flip card — Foto / Carta -->
           <Transition name="reveal">
@@ -91,22 +79,12 @@
                   </div>
                   <div class="relative z-10 h-full px-5 py-4 flex flex-col">
                     <p class="font-caveat text-[#111827] text-[19px] leading-[28px] whitespace-pre-line">{{ letterText }}</p>
-                    <button
-                      v-if="!galleryOpen"
-                      type="button"
-                      class="mt-2 self-end text-xs uppercase tracking-[0.25em] hover:opacity-60 transition-all duration-300"
-                      style="color: #0A0F1A;"
-                      @click.stop="openGallery"
-                    >
-                      Ver mais...
-                    </button>
                   </div>
                 </div>
 
               </div>
             </div>
           </Transition>
-
 
         </div>
       </div>
@@ -198,13 +176,15 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, nextTick, onMounted, onUnmounted } from 'vue'
+import { ref, watch, onMounted, onUnmounted } from 'vue'
+import { gsap } from 'gsap'
 import { MasonryWall } from '@yeger/vue-masonry-wall'
-import { useGsapAnimations } from '~/composables/useGsapAnimations'
 import { useMedia } from '~/composables/useMedia'
 import ParticlesBackground from '~/components/ParticlesBackground.vue'
 
 defineOptions({ name: 'IntroSection' })
+
+const props = defineProps<{ isActive?: boolean }>()
 
 interface GalleryItem {
   type: 'image' | 'video'
@@ -218,12 +198,7 @@ const photoFlipped  = ref(false)
 const cardVisible   = ref(false)
 const galleryOpen   = ref(false)
 const lightboxItem  = ref<GalleryItem | null>(null)
-
-async function openGallery() {
-  galleryOpen.value = true
-  await nextTick()
-  galleryTextRef.value?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-}
+const animPlayed = ref(false)
 
 const letterText = `Dia 03/09/2022.
 No primeiro dia de uma conferência internacional…
@@ -252,16 +227,22 @@ const galleryItems: GalleryItem[] = [
   { type: 'image', src: img('galeria15.jpeg') },
 ]
 
-const { fadeInLeft, fadeInRight } = useGsapAnimations()
-
 function onKeydown(e: KeyboardEvent) {
   if (e.key === 'Escape') lightboxItem.value = null
 }
 
 onMounted(() => {
-  fadeInRight(textColRef.value)
-  fadeInLeft(imageColRef.value)
+  gsap.set(imageColRef.value, { opacity: 0, y: 40 })
   window.addEventListener('keydown', onKeydown)
+})
+
+watch(() => props.isActive, (active) => {
+  if (!active || animPlayed.value) return
+  animPlayed.value = true
+  cardVisible.value = true
+  galleryOpen.value = true
+  const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
+  tl.fromTo(imageColRef.value, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.7 })
 })
 
 onUnmounted(() => {

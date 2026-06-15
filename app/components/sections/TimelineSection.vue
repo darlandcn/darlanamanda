@@ -124,7 +124,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 import { gsap } from 'gsap'
 import { useMedia } from '~/composables/useMedia'
 import ParticlesBackground from '~/components/ParticlesBackground.vue'
@@ -132,10 +132,13 @@ import type { TimelineEvent } from '~/../../shared/types/index'
 
 defineOptions({ name: 'TimelineSection' })
 
+const props = defineProps<{ isActive?: boolean }>()
+
 const headerRef       = ref<HTMLElement | null>(null)
 const timelineLineRef = ref<HTMLElement | null>(null)
 const eventsRefs      = ref<HTMLElement[]>([])
 const lightboxSrc     = ref<string | null>(null)
+const animPlayed      = ref(false)
 
 const { img } = useMedia()
 
@@ -149,24 +152,14 @@ const placeholderEvents: (TimelineEvent & { id: number })[] = [
 ]
 
 onMounted(() => {
+  gsap.set([timelineLineRef.value, ...eventsRefs.value], { opacity: 0, y: 40 })
+})
+
+watch(() => props.isActive, (active) => {
+  if (!active || animPlayed.value) return
+  animPlayed.value = true
   const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
-
-  tl.fromTo(headerRef.value,
-    { opacity: 0, y: 40 },
-    { opacity: 1, y: 0, duration: 0.8 }
-  )
-
-  tl.fromTo(timelineLineRef.value,
-    { scaleY: 0, transformOrigin: 'top' },
-    { scaleY: 1, duration: 1, ease: 'power2.inOut' },
-    '-=0.4'
-  )
-
-  tl.fromTo(eventsRefs.value,
-    { opacity: 0, y: 20 },
-    { opacity: 1, y: 0, duration: 0.6, stagger: 0.12 },
-    '-=0.6'
-  )
+  tl.fromTo([timelineLineRef.value, ...eventsRefs.value], { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.7 })
 })
 </script>
 

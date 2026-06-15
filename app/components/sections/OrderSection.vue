@@ -28,16 +28,6 @@
     <!-- Conteúdo -->
     <div class="relative z-10 w-full max-w-lg mx-auto px-6 flex-1 pb-24 flex flex-col gap-4 items-center">
 
-      <!-- Botão revelar -->
-      <button
-        v-if="!cardVisible"
-        type="button"
-        class="mt-8 text-xs uppercase tracking-[0.25em] text-ink hover:opacity-80 rounded-full px-6 py-2 transition-all duration-300"
-        @click="reveal"
-      >
-        Revelar
-      </button>
-
       <!-- Vídeo + fotos -->
       <Transition name="reveal">
         <div v-show="cardVisible" class="w-full flex flex-col gap-10">
@@ -137,27 +127,23 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue'
-import { useGsapAnimations } from '~/composables/useGsapAnimations'
+import { ref, watch, onMounted } from 'vue'
+import { gsap } from 'gsap'
 import { useMedia } from '~/composables/useMedia'
 import ParticlesBackground from '~/components/ParticlesBackground.vue'
 
-defineOptions({ name: 'GallerySection2' })
+defineOptions({ name: 'OrderSection' })
+
+const props = defineProps<{ isActive?: boolean }>()
 
 const headerRef   = ref<HTMLElement | null>(null)
 const videoRef    = ref<HTMLVideoElement | null>(null)
 const cardVisible = ref(false)
 const isPlaying   = ref(false)
 const isMuted     = ref(false)
+const animPlayed  = ref(false)
 
-const { fadeInUp } = useGsapAnimations()
 const { img } = useMedia()
-
-function reveal() {
-  cardVisible.value = true
-  videoRef.value?.play()
-  isPlaying.value = true
-}
 
 function togglePlay() {
   if (!videoRef.value) return
@@ -176,8 +162,16 @@ function toggleMute() {
   isMuted.value = videoRef.value.muted
 }
 
-onMounted(() => {
-  fadeInUp(headerRef.value)
+watch(() => props.isActive, (active) => {
+  if (!active || animPlayed.value) return
+  animPlayed.value = true
+  cardVisible.value = true
+  if (videoRef.value) {
+    videoRef.value.muted = true
+    isMuted.value = true
+    videoRef.value.play()
+    isPlaying.value = true
+  }
 })
 </script>
 

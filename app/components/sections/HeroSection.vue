@@ -103,19 +103,12 @@ const subtitleRef  = ref<HTMLElement | null>(null)
 const swipeHintRef = ref<HTMLElement | null>(null)
 
 onMounted(() => {
-  const tl = gsap.timeline({ delay: 0.3, defaults: { ease: 'power3.out' } })
+  const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
 
   tl.fromTo(
-    titleRef.value,
+    [titleRef.value, subtitleRef.value],
     { opacity: 0, y: 40 },
-    { opacity: 1, y: 0, duration: 1 },
-    '-=0.4',
-  )
-  .fromTo(
-    subtitleRef.value,
-    { opacity: 0, y: 30 },
-    { opacity: 1, y: 0, duration: 0.8 },
-    '-=0.5',
+    { opacity: 1, y: 0, duration: 0.7 },
   )
 
   gsap.to('.hero-orb > div', {

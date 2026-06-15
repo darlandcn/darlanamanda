@@ -245,12 +245,11 @@ defineOptions({ name: 'AccessPage' })
 
 const router = useRouter()
 const media  = useMedia()
-const { validate, errorMessage, isShaking } = useAccess()
+const { validate, errorMessage } = useAccess()
 
 const isEntering = ref(false)
 const dateEl = ref<HTMLInputElement | null>(null)
 
-// ── Submissão ──────────────────────────────────────────────────────────
 async function handleEnter() {
   if (isEntering.value) return
 
@@ -260,10 +259,8 @@ async function handleEnter() {
 
   isEntering.value = true
 
-  // Aguarda 1.5s com estado "Verificando..."
   await new Promise(resolve => setTimeout(resolve, 1500))
 
-  // Fade out cinematográfico de tudo
   await gsap.to('.page-content', {
     opacity: 0,
     duration: 0.8,
@@ -289,7 +286,6 @@ function formatDate(e: Event) {
   el.value = f
 }
 
-// ── Animações de entrada ───────────────────────────────────────────────
 onMounted(() => {
   const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
 
@@ -299,12 +295,10 @@ onMounted(() => {
     .from('.subtitle',    { opacity: 0, y: 15, duration: 0.7 }, '-=0.4')
     .from('.input-group', { opacity: 0, y: 20, duration: 0.7 }, '-=0.3')
     .from('.lock-icon',   { opacity: 0, duration: 0.6 }, '-=0.2')
-
 })
 </script>
 
 <style scoped>
-/* ── Transição da mensagem de erro ───────────────────────────────────── */
 .error-fade-enter-active,
 .error-fade-leave-active {
   transition: opacity 250ms ease, transform 250ms ease;
@@ -315,7 +309,6 @@ onMounted(() => {
   transform: translateY(-4px);
 }
 
-/* Spinner do botão */
 @keyframes spin {
   to { transform: rotate(360deg); }
 }

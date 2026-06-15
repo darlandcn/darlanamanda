@@ -86,6 +86,7 @@
         >
           <component
             :is="section.component"
+            :isActive="i === currentIndex"
             v-bind="section.name === 'hero' ? { showSwipeHint: showSwipeHint } : {}"
             @next="goNext"
           />
@@ -104,10 +105,10 @@ import { useRouter } from 'vue-router'
 import HeroSection     from '~/components/sections/HeroSection.vue'
 import IntroSection    from '~/components/sections/IntroSection.vue'
 import TimelineSection from '~/components/sections/TimelineSection.vue'
-import GallerySection  from '~/components/sections/GallerySection.vue'
-import GallerySection2  from '~/components/sections/GallerySection2.vue'
+import BestMomentsSection  from '~/components/sections/BestMomentsSection.vue'
+import OrderSection  from '~/components/sections/OrderSection.vue'
 import CounterSection   from '~/components/sections/CounterSection.vue'
-import LettersSection   from '~/components/sections/LettersSection.vue'
+import LetterSection   from '~/components/sections/LetterSection.vue'
 
 definePageMeta({ ssr: false })
 defineOptions({ name: 'NossaHistoriaPage' })
@@ -118,10 +119,10 @@ const sections = [
   { name: 'hero',     component: markRaw(HeroSection) },
   { name: 'intro',    component: markRaw(IntroSection) },
   { name: 'timeline', component: markRaw(TimelineSection) },
-  { name: 'gallery',   component: markRaw(GallerySection) },
-  { name: 'gallery-2', component: markRaw(GallerySection2) },
+  { name: 'gallery',   component: markRaw(BestMomentsSection) },
+  { name: 'gallery-2', component: markRaw(OrderSection) },
   { name: 'counter',   component: markRaw(CounterSection) },
-  { name: 'letters',   component: markRaw(LettersSection) },
+  { name: 'letters',   component: markRaw(LetterSection) },
 ]
 
 const currentIndex   = ref(0)
@@ -134,15 +135,7 @@ async function goNext() {
 
   if (isAnimating.value) return
 
-  if (currentIndex.value >= sections.length - 1) {
-    await gsap.to(slideRefs.value[currentIndex.value], {
-      opacity: 0,
-      duration: 0.6,
-      ease: 'power2.in',
-    })
-    router.push('/')
-    return
-  }
+  if (currentIndex.value >= sections.length - 1) return
 
   isAnimating.value = true
 

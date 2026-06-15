@@ -9,6 +9,7 @@
       justify-content: center;
       position: relative;
       overflow: hidden;
+      padding-bottom: 3.5rem;
     "
   >
     <ParticlesBackground id="letters-particles" />
@@ -162,16 +163,19 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 import { gsap } from 'gsap'
 import ParticlesBackground from '~/components/ParticlesBackground.vue'
 
-defineOptions({ name: 'LettersSection' })
+defineOptions({ name: 'LetterSection' })
+
+const props = defineProps<{ isActive?: boolean }>()
 
 const headerRef   = ref<HTMLElement | null>(null)
 const envelopeRef = ref<HTMLElement | null>(null)
 const hintRef     = ref<HTMLElement | null>(null)
 const isOpen      = ref(false)
+const animPlayed  = ref(false)
 
 const letterText = `Meu amor,
 
@@ -206,16 +210,14 @@ function closeLetter() {
 }
 
 onMounted(() => {
-  gsap.fromTo(
-    headerRef.value,
-    { opacity: 0, y: 30 },
-    { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', delay: 0.2 },
-  )
-  gsap.fromTo(
-    envelopeRef.value,
-    { opacity: 0, scale: 0.95 },
-    { opacity: 1, scale: 1, duration: 0.7, ease: 'power3.out', delay: 0.5 },
-  )
+  gsap.set([envelopeRef.value, hintRef.value], { opacity: 0, y: 40 })
+})
+
+watch(() => props.isActive, (active) => {
+  if (!active || animPlayed.value) return
+  animPlayed.value = true
+  const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
+  tl.fromTo([envelopeRef.value, hintRef.value], { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.7 })
 })
 </script>
 
