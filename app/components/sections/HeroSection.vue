@@ -8,7 +8,7 @@
     <!-- Foto de fundo -->
     <div style="position: absolute; inset: 0; z-index: 0; overflow: hidden;">
       <img
-        :src="img('couple.jpeg')"
+        src="/images/couple.jpeg"
         alt=""
         aria-hidden="true"
         style="display: block; width: 100%; height: 115%; object-fit: cover; object-position: 45% top; transform: translateY(-19%); filter: brightness(0.5) saturate(0.7); -webkit-mask-image: linear-gradient(to bottom, black 0%, black 65%, rgba(0,0,0,0.5) 82%, transparent 96%); mask-image: linear-gradient(to bottom, black 0%, black 65%, rgba(0,0,0,0.5) 82%, transparent 96%);"
@@ -90,13 +90,10 @@
 import { ref, onMounted } from 'vue'
 import { gsap } from 'gsap'
 import ParticlesBackground from '~/components/ParticlesBackground.vue'
-import { useMedia } from '~/composables/useMedia'
 
 defineOptions({ name: 'HeroSection' })
 
 const props = defineProps<{ showSwipeHint?: boolean }>()
-
-const { img } = useMedia()
 
 const titleRef     = ref<HTMLElement | null>(null)
 const subtitleRef  = ref<HTMLElement | null>(null)

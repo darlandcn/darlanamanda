@@ -63,7 +63,6 @@
 <script lang="ts" setup>
 import { ref, watch, onMounted } from 'vue'
 import { gsap } from 'gsap'
-import { useMedia } from '~/composables/useMedia'
 import ParticlesBackground from '~/components/ParticlesBackground.vue'
 
 defineOptions({ name: 'BestMomentsSection' })
@@ -74,19 +73,17 @@ const headerRef  = ref<HTMLElement | null>(null)
 const itemsRefs  = ref<HTMLElement[]>([])
 const animPlayed = ref(false)
 
-const { img } = useMedia()
-
 const galleryItems = [
-  { id: 1, src: img('memo1.jpeg'),   label: 'nosso primeiro beijo',              date: '02 fev 2026' },
-  { id: 2, src: img('memo2.jpeg'), label: 'a benção dos seus pais', date: '15 fev 2026' },
-  { id: 3, src: img('memo3.jpeg'),  label: 'primeiro café em casa com meus pais', date: '17 fev 2026' },
-  { id: 4, src: img('memo4.jpeg'),  label: 'primeiro não encontro',              date: '22 fev 2026' },
-  { id: 5, src: img('memo5.jpeg'),  label: 'sua primeira vez lá em casa',        date: '08 mar 2026' },
-  { id: 6, src: img('memo6.jpeg'),  label: 'primeira foto de familia',           date: '28 mar 2026' },
-  { id: 7, src: img('memo7.jpeg'),  label: 'primeira viagem juntos',             date: '01 mai 2026' },
-  { id: 8, src: img('memo8.jpeg'),  label: 'minha primeira vez na sua casa',     date: '23 mai 2026' },
-  { id: 9, src: img('memo9.jpeg'),  label: 'visita ao nosso possivel ap',        date: '30 mai 2026' },
-  { id: 10, src: img('memo10.jpeg'), label: 'Primeiro dia dos namorados +', label2: 'primeiro jogo da copa', date: '12/13 jun 2026' },
+  { id: 1, src: '/images/memo1.jpeg',   label: 'nosso primeiro beijo',              date: '02 fev 2026' },
+  { id: 2, src: '/images/memo2.jpeg', label: 'a benção dos seus pais', date: '15 fev 2026' },
+  { id: 3, src: '/images/memo3.jpeg',  label: 'primeiro café em casa com meus pais', date: '17 fev 2026' },
+  { id: 4, src: '/images/memo4.jpeg',  label: 'primeiro não encontro',              date: '22 fev 2026' },
+  { id: 5, src: '/images/memo5.jpeg',  label: 'sua primeira vez lá em casa',        date: '08 mar 2026' },
+  { id: 6, src: '/images/memo6.jpeg',  label: 'primeira foto de familia',           date: '28 mar 2026' },
+  { id: 7, src: '/images/memo7.jpeg',  label: 'primeira viagem juntos',             date: '01 mai 2026' },
+  { id: 8, src: '/images/memo8.jpeg',  label: 'minha primeira vez na sua casa',     date: '23 mai 2026' },
+  { id: 9, src: '/images/memo9.jpeg',  label: 'visita ao nosso possivel ap',        date: '30 mai 2026' },
+  { id: 10, src: '/images/memo10.jpeg', label: 'Primeiro dia dos namorados +', label2: 'primeiro jogo da copa', date: '12/13 jun 2026' },
 ]
 
 onMounted(() => {

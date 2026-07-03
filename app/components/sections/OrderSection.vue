@@ -37,7 +37,7 @@
             <div class="relative w-full" @click="togglePlay">
               <video
                 ref="videoRef"
-                src="https://pupkcykrdxwgwmynjysb.supabase.co/storage/v1/object/public/media/video/vpedido.mp4"
+                src="/video/vpedido.mp4"
                 class="w-full h-auto block"
                 playsinline
                 preload="auto"
@@ -101,19 +101,19 @@
           <!-- Grade de fotos: cada uma com seu polaroid -->
           <div class="grid grid-cols-2 gap-4">
             <div class="polaroid flex flex-col">
-              <img loading="lazy" :src="img('ped1.jpeg')" alt="" class="w-full h-auto block" />
+              <img loading="lazy" src="/images/ped1.jpeg" alt="" class="w-full h-auto block" />
               <div class="flex items-center justify-center" style="height: 48px;" />
             </div>
             <div class="polaroid flex flex-col">
-              <img loading="lazy" :src="img('ped2.jpeg')" alt="" class="w-full h-auto block" />
+              <img loading="lazy" src="/images/ped2.jpeg" alt="" class="w-full h-auto block" />
               <div class="flex items-center justify-center" style="height: 48px;" />
             </div>
             <div class="polaroid flex flex-col">
-              <img loading="lazy" :src="img('ped3.jpeg')" alt="" class="w-full h-auto block" />
+              <img loading="lazy" src="/images/ped3.jpeg" alt="" class="w-full h-auto block" />
               <div class="flex items-center justify-center" style="height: 48px;" />
             </div>
             <div class="polaroid flex flex-col">
-              <img loading="lazy" :src="img('ped4.jpeg')" alt="" class="w-full h-auto block" />
+              <img loading="lazy" src="/images/ped4.jpeg" alt="" class="w-full h-auto block" />
               <div class="flex items-center justify-center" style="height: 48px;" />
             </div>
           </div>
@@ -129,7 +129,6 @@
 <script lang="ts" setup>
 import { ref, watch, onMounted } from 'vue'
 import { gsap } from 'gsap'
-import { useMedia } from '~/composables/useMedia'
 import ParticlesBackground from '~/components/ParticlesBackground.vue'
 
 defineOptions({ name: 'OrderSection' })
@@ -142,8 +141,6 @@ const cardVisible = ref(false)
 const isPlaying   = ref(false)
 const isMuted     = ref(false)
 const animPlayed  = ref(false)
-
-const { img } = useMedia()
 
 function togglePlay() {
   if (!videoRef.value) return

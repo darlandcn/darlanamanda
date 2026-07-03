@@ -126,7 +126,6 @@
 <script lang="ts" setup>
 import { ref, watch, onMounted } from 'vue'
 import { gsap } from 'gsap'
-import { useMedia } from '~/composables/useMedia'
 import ParticlesBackground from '~/components/ParticlesBackground.vue'
 import type { TimelineEvent } from '~/../../shared/types/index'
 
@@ -140,15 +139,12 @@ const eventsRefs      = ref<HTMLElement[]>([])
 const lightboxSrc     = ref<string | null>(null)
 const animPlayed      = ref(false)
 
-const { img } = useMedia()
-
-
 const placeholderEvents: (TimelineEvent & { id: number })[] = [
-  { id: 1, date: '26 Abr 2025', title: 'O Recomeço', description: 'Voltamos a conversar graças a uma foto e a uma mensagem (nada tendenciosa) que pra você não era nada demais, mas que pra mim era uma resposta do Senhor.', image: img('evento1.jpeg') },
-  { id: 2, date: '15 Jun 2025', title: 'A Ligação', description: 'Só de lembrar consigo sentir o quanto estava ansioso pra essa ligação e o quanto eu saí aliviado dela. Afinal, não é todo dia que as pessoas são correspondidas quando expressam seus mais profundos sentimentos.', image: img('evento2.jpeg') },
-  { id: 3, date: '17 Jun 2025', title: 'As provações', description: 'Era tudo bom demais pra ser verdade... Dois dias depois os irmãos nos deram essa direção. A partir dai não foi nada fácil, mas tinhamos clareza de que essa direção vinha do Senhor.', image: img('evento3.jpeg') },
-  { id: 4, date: 'Jun – Dez 2025', title: 'Os 6 meses', description: 'Passamos 6 meses assim, virando a noite, ajustando horários pra conseguir conversar, muitas comunhões, incertezas, só esperando o momento em que nos veríamos pessoalmente.', image: img('evento4.jpeg') },
-  { id: 5, date: '15 Jan 2026', title: 'O Reencontro', description: 'E finalmente nos reencontramos, conversamos, e a partir dali eu já tinha certeza que você era e seria minha prioridade.', image: img('evento5.jpeg') },
+  { id: 1, date: '26 Abr 2025', title: 'O Recomeço', description: 'Voltamos a conversar graças a uma foto e a uma mensagem (nada tendenciosa) que pra você não era nada demais, mas que pra mim era uma resposta do Senhor.', image: '/images/evento1.jpeg' },
+  { id: 2, date: '15 Jun 2025', title: 'A Ligação', description: 'Só de lembrar consigo sentir o quanto estava ansioso pra essa ligação e o quanto eu saí aliviado dela. Afinal, não é todo dia que as pessoas são correspondidas quando expressam seus mais profundos sentimentos.', image: '/images/evento2.jpeg' },
+  { id: 3, date: '17 Jun 2025', title: 'As provações', description: 'Era tudo bom demais pra ser verdade... Dois dias depois os irmãos nos deram essa direção. A partir dai não foi nada fácil, mas tinhamos clareza de que essa direção vinha do Senhor.', image: '/images/evento3.jpeg' },
+  { id: 4, date: 'Jun – Dez 2025', title: 'Os 6 meses', description: 'Passamos 6 meses assim, virando a noite, ajustando horários pra conseguir conversar, muitas comunhões, incertezas, só esperando o momento em que nos veríamos pessoalmente.', image: '/images/evento4.jpeg' },
+  { id: 5, date: '15 Jan 2026', title: 'O Reencontro', description: 'E finalmente nos reencontramos, conversamos, e a partir dali eu já tinha certeza que você era e seria minha prioridade.', image: '/images/evento5.jpeg' },
 ]
 
 onMounted(() => {

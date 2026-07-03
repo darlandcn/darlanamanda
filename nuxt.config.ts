@@ -22,13 +22,6 @@ export default defineNuxtConfig({
       ],
     },
   },
-  runtimeConfig: {
-    public: {
-      supabaseUrl: '',
-      supabaseProjectUrl: '',
-      supabaseAnonKey: '',
-    },
-  },
   vite: {
     optimizeDeps: {
       include: ['gsap', 'lenis'],

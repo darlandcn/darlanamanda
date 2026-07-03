@@ -56,7 +56,7 @@
                 <!-- Frente: foto -->
                 <div class="flip-card-face overflow-hidden polaroid flex flex-col">
                   <img
-                    :src="img('comecoimagem.jpeg')"
+                    src="/images/comecoimagem.jpeg"
                     alt="Foto especial"
                     loading="lazy"
                     class="w-full flex-1 object-cover rounded-sm min-h-0"
@@ -179,7 +179,6 @@
 import { ref, watch, onMounted, onUnmounted } from 'vue'
 import { gsap } from 'gsap'
 import { MasonryWall } from '@yeger/vue-masonry-wall'
-import { useMedia } from '~/composables/useMedia'
 import ParticlesBackground from '~/components/ParticlesBackground.vue'
 
 defineOptions({ name: 'IntroSection' })
@@ -207,24 +206,22 @@ Eu me lembro como essa tarde foi leve, espontânea e de muitas risadas.
 Mal sabia eu que, a partir dessa conferência, meu coração já teria sido tomado por completo.
 E não parou por ai...`
 
-const { img, vid } = useMedia()
-
 const galleryItems: GalleryItem[] = [
-  { type: 'image', src: img('galeria01.jpeg') },
-  { type: 'image', src: img('galeria02.jpeg') },
-  { type: 'image', src: img('galeria03.jpeg') },
-  { type: 'image', src: img('galeria04.jpeg') },
-  { type: 'image', src: img('galeria05.jpeg') },
-  { type: 'image', src: img('galeria06.jpeg') },
-  { type: 'image', src: img('galeria07.jpeg') },
-  { type: 'image', src: img('galeria08.jpeg') },
-  { type: 'image', src: img('galeria09.jpeg') },
-  { type: 'image', src: img('galeria10.jpeg') },
-  { type: 'image', src: img('galeria11.jpeg') },
-  { type: 'image', src: img('galeria12.jpeg') },
-  { type: 'image', src: img('galeria13.jpeg') },
-  { type: 'image', src: img('galeria14.jpeg') },
-  { type: 'image', src: img('galeria15.jpeg') },
+  { type: 'image', src: '/images/galeria01.jpeg' },
+  { type: 'image', src: '/images/galeria02.jpeg' },
+  { type: 'image', src: '/images/galeria03.jpeg' },
+  { type: 'image', src: '/images/galeria04.jpeg' },
+  { type: 'image', src: '/images/galeria05.jpeg' },
+  { type: 'image', src: '/images/galeria06.jpeg' },
+  { type: 'image', src: '/images/galeria07.jpeg' },
+  { type: 'image', src: '/images/galeria08.jpeg' },
+  { type: 'image', src: '/images/galeria09.jpeg' },
+  { type: 'image', src: '/images/galeria10.jpeg' },
+  { type: 'image', src: '/images/galeria11.jpeg' },
+  { type: 'image', src: '/images/galeria12.jpeg' },
+  { type: 'image', src: '/images/galeria13.jpeg' },
+  { type: 'image', src: '/images/galeria14.jpeg' },
+  { type: 'image', src: '/images/galeria15.jpeg' },
 ]
 
 function onKeydown(e: KeyboardEvent) {
